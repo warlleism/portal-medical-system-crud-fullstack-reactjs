@@ -7,14 +7,28 @@
     font-family: 'Roboto', sans-serif;
     box-shadow: 3px 0px 10px rgb(112, 112, 112);
 
+    .container-field {
+        .field {
+            width: 100%;
+            color: #fff;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #00311f;
+        }
+
+    }
+
     .main-logo {
         width: 96%;
-        height: 18%;
+        height: 10%;
         color: #fff;
         font-size: 1.8rem;
         margin-top: 10px;
         margin-left: 10px;
         position: relative;
+
 
         .arrow-back-navbar {
             top: 10px;
@@ -57,10 +71,10 @@
     }
 
     .list-links-field {
-        height: 65%;
+        height: 90%;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: space-evenly;
 
         .link-field {
             width: 100%;
@@ -87,7 +101,7 @@
     }
 
     .profile-login-logout {
-        height: 20%;
+        height: 10%;
         display: flex;
         align-items: flex-end;
         justify-content: space-around;
