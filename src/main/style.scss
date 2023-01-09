@@ -14,6 +14,7 @@
     height: 100vh;
     position: fixed;
     flex-direction: column;
+    transition: .5s ease-in-out;
     background-color: #014E31;
     box-shadow: 3px 0px 10px rgb(112, 112, 112);
 
@@ -37,7 +38,6 @@
         margin-top: 10px;
         margin-left: 10px;
         position: relative;
-
 
         .arrow-back-navbar {
             top: 10px;

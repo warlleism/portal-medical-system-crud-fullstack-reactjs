@@ -12,7 +12,41 @@ const Main = () => {
     const [medicos, setMedicos] = useState(false)
     const [pacientes, setPacientes] = useState(false)
     const [procedimentos, setProcedimentos] = useState(false)
+    const [countNavBar, setCountNavBar] = useState(false)
 
+    const hiddenBar = () => {
+        const data = document.querySelectorAll('#hidden-bar')
+        const nav = document.getElementById('navBar')
+        let arrowBack = document.getElementById('arrow-nav-bar')
+        const navTitle = document.getElementById('hidden-bar-title')
+        const icon = document.querySelectorAll('#icon-center')
+
+        if (countNavBar == false) {
+            icon[0].style.justifyContent = 'center'
+            icon[1].style.justifyContent = 'center'
+            icon[2].style.justifyContent = 'center'
+            icon[3].style.justifyContent = 'center'
+            icon[4].style.justifyContent = 'center'
+
+            for (let i = 0; i <= data.length; i++) {
+                navTitle.style.opacity = 0
+                arrowBack.style.right = '35px'
+                data[i].style.display = 'none'
+                nav.style.width = "90px"
+                setCountNavBar(true)
+            }
+
+        } else {
+
+            for (let i = 0; i <= data.length; i++) {
+                navTitle.style.opacity = 1
+                data[i].style.display = 'block'
+                nav.style.width = "240px"
+                arrowBack.style.right = '10px'
+                setCountNavBar(false)
+            }
+        }
+    }
 
     const alterData = (event) => {
         const arrow = event.querySelector('i')
@@ -26,17 +60,27 @@ const Main = () => {
     return (
         <BrowserRouter>
             <div>
-                <div className="nav-bar">
+                <div className="nav-bar" id="navBar">
                     <div className="main-logo">
-                        <div><strong style={{ color: "#01DB8B" }}>M</strong>edical</div>
-                        <div><strong style={{ color: "#01DB8B" }}>G</strong>roup
-                            <div className="circle">
+                        <div id="hidden-bar-title" style={{ transition: ".5s ease-in-out" }}>
+                            <div><strong style={{ color: "#01DB8B" }}>M</strong>edical</div>
+                            <div><strong style={{ color: "#01DB8B" }}>G</strong>roup
+                                <div className="circle">
+                                </div>
                             </div>
                         </div>
-                        <div className="arrow-back-navbar">
-                            <span className="material-symbols-outlined">
-                                arrow_back
-                            </span>
+                        <div className="arrow-back-navbar" id="arrow-nav-bar">
+                            {
+                                countNavBar
+                                    ?
+                                    <span className="material-symbols-outlined" onClick={() => hiddenBar()}>
+                                        menu
+                                    </span>
+                                    :
+                                    <span className="material-symbols-outlined" onClick={() => hiddenBar()}>
+                                        arrow_back
+                                    </span>
+                            }
                         </div>
                     </div>
                     <div className="list-links-field">
@@ -46,18 +90,18 @@ const Main = () => {
                                 alterData(event.target)
                                 setConsultas(!consultas)
                             }}>
-                                <div className="title-icon-link-field">
+                                <div className="title-icon-link-field" id="icon-center">
                                     <span className="material-symbols-outlined">
                                         content_paste
                                     </span>
-                                    <div>Consultas</div>
+                                    <div id="hidden-bar">Consultas</div>
                                 </div>
-                                <i className="material-symbols-outlined">
+                                <i className="material-symbols-outlined" id="hidden-bar">
                                     arrow_drop_down
                                 </i>
                             </div>
                             {
-                                consultas
+                                consultas && countNavBar == false
                                     ?
                                     <div className="container-field">
                                         <Link to={'/cadastrarConsulta'} className="field">
@@ -78,19 +122,19 @@ const Main = () => {
                                     alterData(event.target)
                                     setMedicos(!medicos)
                                 }}>
-                                <div className="title-icon-link-field">
+                                <div className="title-icon-link-field" id="icon-center">
                                     <span className="material-symbols-outlined">
                                         vaccines
                                     </span>
-                                    <div>Médicos</div>
+                                    <div id="hidden-bar">Médicos</div>
                                 </div>
-                                <i className="material-symbols-outlined">
+                                <i className="material-symbols-outlined" id="hidden-bar">
                                     arrow_drop_down
                                 </i>
                             </div>
 
                             {
-                                medicos
+                                medicos && countNavBar == false
                                     ?
                                     <div className="container-field">
                                         <div className="field">
@@ -113,18 +157,18 @@ const Main = () => {
                                 alterData(event.target)
                                 setPacientes(!pacientes)
                             }}>
-                                <div className="title-icon-link-field">
+                                <div className="title-icon-link-field" id="icon-center">
                                     <span className="material-symbols-outlined">
                                         person
                                     </span>
-                                    <div>Pacientes</div>
+                                    <div id="hidden-bar">Pacientes</div>
                                 </div>
-                                <i className="material-symbols-outlined">
+                                <i className="material-symbols-outlined" id="hidden-bar">
                                     arrow_drop_down
                                 </i>
                             </div>
                             {
-                                pacientes
+                                pacientes && countNavBar == false
                                     ?
                                     <div className="container-field">
                                         <div className="field">
@@ -147,18 +191,18 @@ const Main = () => {
                                 alterData(event.target)
                                 setProcedimentos(!procedimentos)
                             }}>
-                                <div className="title-icon-link-field">
+                                <div className="title-icon-link-field" id="icon-center">
                                     <span className="material-symbols-outlined">
                                         stethoscope
                                     </span>
-                                    <div>Pricedimentos</div>
+                                    <div id="hidden-bar">Pricedimentos</div>
                                 </div>
-                                <i className="material-symbols-outlined">
+                                <i className="material-symbols-outlined" id="hidden-bar">
                                     arrow_drop_down
                                 </i>
                             </div>
                             {
-                                procedimentos
+                                procedimentos && countNavBar == false
                                     ?
                                     <div className="container-field">
                                         <div className="field">
@@ -177,18 +221,19 @@ const Main = () => {
                         </div>
 
                         <div className="link-field">
-                            <div className="title-icon-link-field">
+                            <div className="title-icon-link-field" id="icon-center">
                                 <span className="material-symbols-outlined">
                                     support_agent
                                 </span>
-                                <div>Contatos</div>
+                                <div id="hidden-bar">Contatos</div>
                             </div>
-                            <i className="material-symbols-outlined" style={{ opacity: 0, pointerEvents: 'none' }}>
+                            <i className="material-symbols-outlined" id="hidden-bar" style={{ opacity: 0, pointerEvents: 'none' }}>
                                 arrow_drop_down
                             </i>
                         </div>
                     </div>
-                    <div className="profile-login-logout">
+
+                    <div className="profile-login-logout" id="hidden-bar">
                         <span className="material-symbols-outlined">
                             login
                         </span>

@@ -114,7 +114,7 @@ const VisualizarConsulta = () => {
                                     ?
                                     <>
                                         <div className="modal-confirm" onClick={() => DeletarConsulta(e.id)}>
-                                            Excluir
+                                            Confirmar
                                         </div>
                                         <div className="modal-confirm rigth" onClick={() => setExcluir(false)}>
                                             Cancelar
