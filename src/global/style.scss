@@ -28,11 +28,13 @@ a{
 }
 
 .botao-salvar {
+  border: none;
   cursor: pointer;
-  font-weight: 900;
+  font-weight: 600;
+  font-size: 1.2rem;
   padding: 13px 35px;
   border-radius: 2px;
-  color: rgb(78, 78, 78);
+  color: rgb(255, 255, 255);
   background-color: #27fe88;
 }
 
