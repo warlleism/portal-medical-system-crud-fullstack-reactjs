@@ -10,7 +10,7 @@ const criarNovaConsulta = require('../controller/consulta/create-consulta')
 const listarConsulta = require('../controller/consulta/read-consulta')
 const listarTodasConsultas = require('../controller/consulta/read-all-consultas')
 const deletarConsulta = require('../controller/consulta/delete-consulta')
-const editarConsulta = require('../controller/especialista/update-especialista')
+const editarConsulta = require('../controller/consulta/update-consulta')
 
 
 const criarNovoEspecialista = require('../controller/especialista/create-especialista')
@@ -25,14 +25,14 @@ Router.get('/todasEspecialidade', listarEspecialidade)
 Router.post('/novaConsulta', criarNovaConsulta)
 Router.post('/listarConsulta', listarConsulta)
 Router.get('/todasConsultas', listarTodasConsultas)
-Router.post('/deletarConsulta', deletarConsulta)
-Router.post('/editarConsulta', editarConsulta)
+Router.delete('/deletarConsulta', deletarConsulta)
+Router.put('/editarConsulta', editarConsulta)
 
 Router.post('/novoEspecialista', criarNovoEspecialista)
 Router.post('/listarEspecialista', listarEspecialista)
 Router.get('/todosEspecialistas', listarTodosEspecialistas)
 Router.post('/deletarEspecialista', deletarEspecialista)
-Router.post('/editarEspecialista', editarEspecialista)
+Router.put('/editarEspecialista', editarEspecialista)
 
 Router.get('/atualizacoes', atualizacoes)
 

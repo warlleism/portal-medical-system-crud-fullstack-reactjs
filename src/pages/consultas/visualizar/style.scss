@@ -6,6 +6,39 @@
   flex-direction: column;
   justify-content: space-evenly;
 
+  .modal-confirm {
+    top: 0;
+    right: 0;
+    z-index: 2;
+    width: 200px;
+    height: 100%;
+    display: flex;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 2rem;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    color: rgb(71, 71, 71);
+    transition: .5s ease-in-out;
+    background-color: rgb(0, 255, 170);
+  }
+
+  .modal-confirm:hover {
+    color: rgb(245, 0, 0);
+  }
+
+  .rigth:hover {
+    color: rgb(71, 71, 71);
+  }
+
+  .rigth {
+    right: 200px;
+    transition: .5s ease-in-out;
+    color: rgb(253, 253, 253);
+    background-color: rgb(2, 122, 82);
+  }
+
   .paginação {
     bottom: 10px;
     display: flex;
@@ -23,9 +56,10 @@
       border-radius: 5px;
       background-color: #03bd76;
     }
+
     button {
       padding: 10px 20px;
-      
+
     }
   }
 

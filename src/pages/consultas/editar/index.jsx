@@ -11,6 +11,7 @@ const EditarConsultas = () => {
     const [handler, setHandler] = useState([])
 
     const [formulario, setFormulario] = useState({
+        id: editData?.id,
         paciente: editData?.paciente,
         especialidade: editData?.especialidade,
         doutor: editData?.doutor,
@@ -52,24 +53,24 @@ const EditarConsultas = () => {
     //configuração para fazer post
     const OptionsRegister = {
         body: JSON.stringify(formulario),
-        method: 'POST',
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
         },
     };
 
     //Lógica para enviar post de nova consulta
-    const EnviarDados = async (event) => {
+    const EditarConsulta = async (event) => {
 
         event.preventDefault()
 
-        await fetch('http://localhost:3001/novaConsulta', OptionsRegister)
+        await fetch('http://localhost:3001/editarConsulta', OptionsRegister)
             .then(res => res.json())
             .then(data => {
                 if (data.status == 200) {
                     Swal.fire({
                         icon: 'success',
-                        title: 'cadastro feito com sucesso',
+                        title: 'edição feita com sucesso',
                     })
                 } else {
                     Swal.fire({
@@ -92,13 +93,15 @@ const EditarConsultas = () => {
     }, [especialidades])
 
     return (
-        <div className="main-editar-consulta">
+        <form onSubmit={EditarConsulta} className="main-editar-consulta">
+            {console.log(formulario)}
+
             <div className="titulo-top-bar">
                 Editar de consultas
             </div>
             <div class="form-group">
                 <span>Nome</span>
-                <input required className="form-field" type="text" defaultValue={formulario.paciente} name="name" />
+                <input required className="form-field" type="text" defaultValue={formulario.paciente} name="name" onChange={(e) => setFormulario({ ...formulario, paciente: e.target.value })}/>
             </div>
             <div className="form-group">
                 <span>Especialidade</span>
@@ -132,16 +135,16 @@ const EditarConsultas = () => {
             </div>
             <div class="form-group">
                 <span>Data</span>
-                <input required className="form-field" type="text" defaultValue={formulario.data} name="data" />
+                <input required className="form-field" type="date" defaultValue={formulario.data} name="data" />
             </div>
             <div class="form-group">
                 <span>Hora</span>
-                <input required className="form-field" type="text" defaultValue={formulario.hora} name="hora" />
+                <input required className="form-field" type="time" defaultValue={formulario.hora} name="hora" />
             </div>
-            <div className="botao-salvar">
+            <button className="botao-salvar" type="submit">
                 Salvar
-            </div>
-        </div>
+            </button>
+        </form>
     )
 }
 

@@ -143,12 +143,12 @@ const CadastrarConsultas = () => {
             </div>
             <div className="form-group">
                 <span>Data</span>
-                <input required className="form-field" type="text" onChange={(e) => setFormulario({ ...formulario, data: e.target.value })} />
+                <input required className="form-field" type="date" onChange={(e) => setFormulario({ ...formulario, data: e.target.value })} />
             </div>
 
             <div className="form-group">
                 <span>Hora</span>
-                <input required className="form-field" type="text" onChange={(e) => setFormulario({ ...formulario, hora: e.target.value })} />
+                <input required className="form-field" type="time" onChange={(e) => setFormulario({ ...formulario, hora: e.target.value })} />
             </div>
 
             <button type="submit" className="botao-salvar">
