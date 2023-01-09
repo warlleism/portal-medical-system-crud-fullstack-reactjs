@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  text-decoration: none;
+}
+
+body {
+  background-color: #f2f2f2;
+}
+
+a{
+  color: #fff;
+}
+
+.titulo-top-bar {
+  top: -69px;
+  width: 100%;
+  color: #fff;
+  padding: 20px 0;
+  font-weight: 700;
+  font-size: 1.5rem;
+  position: absolute;
+  text-align: center;
+  background-color: #03bd76;
+}
+
+.botao-salvar {
+  cursor: pointer;
+  font-weight: 900;
+  padding: 13px 35px;
+  border-radius: 2px;
+  color: rgb(78, 78, 78);
+  background-color: #27fe88;
+}
+
+.form-field {
+  display: block;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  color: #524b4b;
+  padding: 8px 16px;
+  line-height: 25px;
+  border-radius: 6px;
+  background: #fff;
+  font-family: inherit;
+  -webkit-appearance: none;
+  border: 1px solid #f2f2f2;
+  transition: border .3s ease;
+
+  &::placeholder {
+    color: #30303031;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #27fe88;
+  }
+}
+
+.form-group {
+  width: 90%;
+  display: flex;
+  position: relative;
+
+  &>span,
+  .form-field {
+    display: block;
+    white-space: nowrap;
+
+    &:not(:first-child):not(:last-child) {
+      border-radius: 0;
+    }
+
+    &:first-child {
+      border-radius: 6px 0 0 6px;
+    }
+
+    &:last-child {
+      border-radius: 0 6px 6px 0;
+    }
+
+    &:not(:first-child) {
+      margin-left: -1px;
+    }
+  }
+
+  .form-field {
+    width: 1%;
+    z-index: 1;
+    margin-top: 0;
+    flex: 1 1 auto;
+    margin-bottom: 0;
+    position: relative;
+  }
+
+  &>span {
+    width: 90px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    padding: 8px 12px;
+    line-height: 25px;
+    text-align: center;
+    background: #27fe88;
+    border: 1px solid #27fe88;
+    color: rgba(46, 46, 46, 0.918);
+    transition: background .3s ease, border .3s ease, color .3s ease;
+  }
+
+  &:focus-within {
+    &>span {
+      color: #fff;
+      background: #27fe88;
+      border-color: #27fe88;
+    }
+  }
+}

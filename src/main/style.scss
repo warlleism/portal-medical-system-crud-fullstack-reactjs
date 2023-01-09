@@ -1,10 +1,20 @@
+.content-forms {
+    width: 60%;
+    height: 1000px;
+    margin: 100px auto;
+    background-color: #fff;
+    transform: translateX(130px);
+}
+
 .nav-bar {
+    top: 0;
+    left: 0;
     width: 240px;
     display: flex;
     height: 100vh;
+    position: fixed;
     flex-direction: column;
     background-color: #014E31;
-    font-family: 'Roboto', sans-serif;
     box-shadow: 3px 0px 10px rgb(112, 112, 112);
 
     .container-field {
@@ -15,9 +25,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #00311f;
+            background-color: #00cc81;
         }
-
     }
 
     .main-logo {
@@ -41,9 +50,9 @@
             position: absolute;
             align-items: center;
             justify-content: center;
+            transition: .5s ease-in-out;
             background-color: #01DB8B;
             box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.295);
-
 
             span {
                 width: 100%;
@@ -52,6 +61,10 @@
                 font-size: 1.4rem;
                 text-align: center;
             }
+        }
+
+        .arrow-back-navbar:hover {
+            background-color: #04ffa3;
         }
 
         div:nth-child(2) {
@@ -84,6 +97,7 @@
             justify-content: space-around;
 
             i {
+                pointer-events: none;
                 transition: .5s ease-in-out;
             }
 

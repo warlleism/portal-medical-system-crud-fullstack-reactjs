@@ -1,11 +1,14 @@
 import React from "react";
 import Main from "./main";
-import './global/style.css'
+import './global/style.scss'
+import Provider from './context/provider';
 
 function App() {
   return (
     <div className="App">
-      <Main />
+      <Provider>
+        <Main />
+      </Provider>
     </div>
   );
 }
