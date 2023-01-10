@@ -1,5 +1,6 @@
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { Container } from "../styled/styled";
 import './style.scss'
 
 import CadastrarConsultas from "../pages/consultas/cadastrar";
@@ -14,44 +15,6 @@ const Main = () => {
     const [pacientes, setPacientes] = useState(false)
     const [procedimentos, setProcedimentos] = useState(false)
     const [countNavBar, setCountNavBar] = useState(false)
-
-    const hiddenBar = () => {
-        const data = document.querySelectorAll('#hidden-bar')
-        const nav = document.getElementById('navBar')
-        let arrowBack = document.getElementById('arrow-nav-bar')
-        const navTitle = document.getElementById('hidden-bar-title')
-        const icon = document.querySelectorAll('#icon-center')
-
-        if (countNavBar == false) {
-            icon[0].style.justifyContent = 'center'
-            icon[1].style.justifyContent = 'center'
-            icon[2].style.justifyContent = 'center'
-            icon[3].style.justifyContent = 'center'
-            icon[4].style.justifyContent = 'center'
-
-            for (let i = 0; i <= data.length; i++) {
-                navTitle.style.opacity = 0
-                arrowBack.style.right = '35px'
-                data[i].style.display = 'none'
-                nav.style.width = "90px"
-                setCountNavBar(true)
-            }
-
-        } else {
-            icon[0].style.justifyContent = 'flex-start'
-            icon[1].style.justifyContent = 'flex-start'
-            icon[2].style.justifyContent = 'flex-start'
-            icon[3].style.justifyContent = 'flex-start'
-            icon[4].style.justifyContent = 'flex-start'
-            for (let i = 0; i <= data.length; i++) {
-                navTitle.style.opacity = 1
-                data[i].style.display = 'block'
-                nav.style.width = "240px"
-                arrowBack.style.right = '10px'
-                setCountNavBar(false)
-            }
-        }
-    }
 
     const alterData = (event) => {
         const arrow = event.querySelector('i')
@@ -75,17 +38,9 @@ const Main = () => {
                             </div>
                         </Link>
                         <div className="arrow-back-navbar" id="arrow-nav-bar">
-                            {
-                                countNavBar
-                                    ?
-                                    <span className="material-symbols-outlined" onClick={() => hiddenBar()}>
-                                        menu
-                                    </span>
-                                    :
-                                    <span className="material-symbols-outlined" onClick={() => hiddenBar()}>
-                                        arrow_back
-                                    </span>
-                            }
+                            <span className="material-symbols-outlined" onClick={() => window.history.back()}>
+                                arrow_back
+                            </span>
                         </div>
                     </div>
                     <div className="list-links-field">
@@ -99,9 +54,9 @@ const Main = () => {
                                     <span className="material-symbols-outlined">
                                         content_paste
                                     </span>
-                                    <div id="hidden-bar">Consultas</div>
+                                    <div>Consultas</div>
                                 </div>
-                                <i className="material-symbols-outlined" id="hidden-bar">
+                                <i className="material-symbols-outlined">
                                     arrow_drop_down
                                 </i>
                             </div>
@@ -131,9 +86,9 @@ const Main = () => {
                                     <span className="material-symbols-outlined">
                                         vaccines
                                     </span>
-                                    <div id="hidden-bar">Médicos</div>
+                                    <div>Médicos</div>
                                 </div>
-                                <i className="material-symbols-outlined" id="hidden-bar">
+                                <i className="material-symbols-outlined">
                                     arrow_drop_down
                                 </i>
                             </div>
@@ -166,9 +121,9 @@ const Main = () => {
                                     <span className="material-symbols-outlined">
                                         person
                                     </span>
-                                    <div id="hidden-bar">Pacientes</div>
+                                    <div>Pacientes</div>
                                 </div>
-                                <i className="material-symbols-outlined" id="hidden-bar">
+                                <i className="material-symbols-outlined">
                                     arrow_drop_down
                                 </i>
                             </div>
@@ -200,9 +155,9 @@ const Main = () => {
                                     <span className="material-symbols-outlined">
                                         stethoscope
                                     </span>
-                                    <div id="hidden-bar">Pricedimentos</div>
+                                    <div>Pricedimentos</div>
                                 </div>
-                                <i className="material-symbols-outlined" id="hidden-bar">
+                                <i className="material-symbols-outlined">
                                     arrow_drop_down
                                 </i>
                             </div>
@@ -230,15 +185,15 @@ const Main = () => {
                                 <span className="material-symbols-outlined">
                                     support_agent
                                 </span>
-                                <div id="hidden-bar">Contatos</div>
+                                <div>Contatos</div>
                             </div>
-                            <i className="material-symbols-outlined" id="hidden-bar" style={{ opacity: 0, pointerEvents: 'none' }}>
+                            <i className="material-symbols-outlined" style={{ opacity: 0, pointerEvents: 'none' }}>
                                 arrow_drop_down
                             </i>
                         </div>
                     </div>
 
-                    <div className="profile-login-logout" id="hidden-bar">
+                    <div className="profile-login-logout">
                         <span className="material-symbols-outlined">
                             login
                         </span>
@@ -251,19 +206,18 @@ const Main = () => {
                     </div>
                 </div>
 
-                <div className="content-forms">
+                <Container>
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/cadastrarConsulta" element={<CadastrarConsultas />} />
                         <Route path="/editarConsulta" element={<EditarConsultas />} />
                         <Route path="/visualizarConsulta" element={<VisualizarConsulta />} />
-                        {/* <Route path="/pcgamer" element={<PcGamer />} /> */}
-                        {/* <Route path="/eletronicos" element={<Eletronicos />} /> */}
                     </Routes>
-                </div>
+
+                </Container>
             </div>
 
-        </BrowserRouter>
+        </BrowserRouter >
     )
 }
 

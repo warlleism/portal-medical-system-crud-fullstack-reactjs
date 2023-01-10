@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../../context/provider";
+import { TopTitulo } from "../../../styled/styled";
 import Swal from "sweetalert2";
 import './style.scss'
 
@@ -92,59 +93,75 @@ const EditarConsultas = () => {
 
     }, [especialidades])
 
-    return (
-        <form onSubmit={EditarConsulta} className="main-editar-consulta">
-            {console.log(formulario)}
+    //lógicas para formatação de número
+    const phoneMask = (value) => {
+        if (!value) return ""
+        value = value.replace(/\D/g, '')
+        value = value.replace(/(\d{2})(\d)/, "($1) $2")
+        value = value.replace(/(\d)(\d{4})$/, "$1-$2")
+        setFormulario({ ...formulario, contato: value })
 
-            <div className="titulo-top-bar">
+    }
+    //lógicas para apenas serem inseridos números
+    const handleChange = (e) => {
+        const value = e.target.value.replace(/\D/g, "");
+        phoneMask(value)
+    };
+
+
+    return (
+        <>
+            <TopTitulo>
                 Editar de consultas
-            </div>
-            <div class="form-group">
-                <span>Nome</span>
-                <input required className="form-field" type="text" defaultValue={formulario.paciente} name="name" onChange={(e) => setFormulario({ ...formulario, paciente: e.target.value })}/>
-            </div>
-            <div className="form-group">
-                <span>Especialidade</span>
-                <select required className="form-field" type="text" onChange={(e) => setFormulario({ ...formulario, especialidade: e.target.value })} value={formulario.especialidade}>
-                    <option value="">Selecione...</option>
-                    {
-                        especialidades?.map((e) => {
-                            return (
-                                <option value={e.nome}>{e.nome}</option>
-                            )
-                        })
-                    }
-                </select>
-            </div>
-            <div className="form-group">
-                <span>Doutor</span>
-                <select required className="form-field" type="text" onChange={(e) => setFormulario({ ...formulario, doutor: e.target.value })}>
-                    <option value="">Selecione...</option>
-                    {
-                        searchFilter?.map((e) => {
-                            return (
-                                <option defaultValue={e.nome}>{e.nome}</option>
-                            )
-                        })
-                    }
-                </select>
-            </div>
-            <div class="form-group">
-                <span>Contato</span>
-                <input required className="form-field" type="text" defaultValue={formulario.contato} name="contato" />
-            </div>
-            <div class="form-group">
-                <span>Data</span>
-                <input required className="form-field" type="date" defaultValue={formulario.data} name="data" />
-            </div>
-            <div class="form-group">
-                <span>Hora</span>
-                <input required className="form-field" type="time" defaultValue={formulario.hora} name="hora" />
-            </div>
-            <button className="botao-salvar" type="submit">
-                Salvar
-            </button>
-        </form>
+            </TopTitulo>
+            <form onSubmit={EditarConsulta} className="main-editar-consulta">
+                <div class="form-group">
+                    <span>Nome</span>
+                    <input required className="form-field" type="text" defaultValue={formulario.paciente} name="name" onChange={(e) => setFormulario({ ...formulario, paciente: e.target.value })} />
+                </div>
+                <div className="form-group">
+                    <span>Especialidade</span>
+                    <select required className="form-field" type="text" onChange={(e) => setFormulario({ ...formulario, especialidade: e.target.value })} value={formulario.especialidade}>
+                        <option value="">Selecione...</option>
+                        {
+                            especialidades?.map((e) => {
+                                return (
+                                    <option value={e.nome}>{e.nome}</option>
+                                )
+                            })
+                        }
+                    </select>
+                </div>
+                <div className="form-group">
+                    <span>Doutor</span>
+                    <select required className="form-field" type="text" onChange={(e) => setFormulario({ ...formulario, doutor: e.target.value })}>
+                        <option value="">Selecione...</option>
+                        {
+                            searchFilter?.map((e) => {
+                                return (
+                                    <option defaultValue={e.nome}>{e.nome}</option>
+                                )
+                            })
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <span>Contato</span>
+                    <input required className="form-field" value={formulario.contato} onChange={(e) => handleChange(e)} />
+                </div>
+                <div class="form-group">
+                    <span>Data</span>
+                    <input required className="form-field" type="date" defaultValue={formulario.data} />
+                </div>
+                <div class="form-group">
+                    <span>Hora</span>
+                    <input required className="form-field" type="time" defaultValue={formulario.hora} />
+                </div>
+                <button className="botao-salvar" type="submit">
+                    Salvar
+                </button>
+            </form>
+        </>
     )
 }
 

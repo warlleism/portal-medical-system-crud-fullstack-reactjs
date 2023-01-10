@@ -1,7 +1,8 @@
 const express = require("express");
 const Router = express.Router();
 
-const atualizacoes = require('../controller/atualizacoes/last-30-days-registers.js')
+const consultasHome = require('../controller/atualizacoes/last-30-days-registers.js')
+const qtdEspecialistas = require('../controller/atualizacoes/qtd-consultas-registers')
 
 const criarNovaEspecialidade = require('../controller/especialidades/create-especialidades')
 const listarEspecialidade = require('../controller/especialidades/read-all-especialidades')
@@ -34,6 +35,7 @@ Router.get('/todosEspecialistas', listarTodosEspecialistas)
 Router.post('/deletarEspecialista', deletarEspecialista)
 Router.put('/editarEspecialista', editarEspecialista)
 
-Router.get('/atualizacoes', atualizacoes)
+Router.get('/consultasHome', consultasHome)
+Router.get('/qtdEspecialistas', qtdEspecialistas)
 
 module.exports = Router;

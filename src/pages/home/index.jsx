@@ -1,10 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './style.scss'
 
 const Home = () => {
+
+
+    const [data, setData] = useState([])
+    const [qtdInfo, setQtdInfo] = useState([])
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+            const result = await fetch('http://localhost:3001/consultasHome')
+                .then(response => response.json())
+                .then(data => data)
+            setData(result)
+        }
+
+        fetchData()
+
+        const fetchDataQtd = async () => {
+            const result = await fetch('http://localhost:3001/qtdEspecialistas')
+                .then(response => response.json())
+                .then(data => data)
+            setQtdInfo(result)
+        }
+
+        fetchDataQtd()
+    }, [])
+
+
     return (
         <div className="home-page-container">
-
+{
+    console.log(qtdInfo[0])
+}
             <div className="container-consultas-especialistas">
                 <div className="container-info">
                     <div className="container-todas-consultas-especialistas">
@@ -14,7 +43,7 @@ const Home = () => {
                         <div></div>
                         <div>
                             <div>
-                                25
+                                {qtdInfo[0]}
                             </div>
                         </div>
                     </div>
@@ -27,7 +56,7 @@ const Home = () => {
                         <div></div>
                         <div>
                             <div>
-                                55
+                                {qtdInfo[1]}
                             </div>
                         </div>
                     </div>
@@ -42,97 +71,34 @@ const Home = () => {
                 </div>
 
                 <div className="container-ultimas-info">
-                    <div className="container-consultas-mes">
-                        <div className="container-info-ultimas">
-                            <span>Paciente</span>
-                            <div>Warllei Martins</div>
-                        </div>
-                        <div className="container-info-ultimas">
-                            <span>Data</span>
-                            <div>15/03/2023</div>
-                        </div>
-                        <div className="container-info-ultimas">
-                            <span>Horário</span>
-                            <div>10:30</div>
-                        </div>
-                        <div className="container-info-ultimas">
-                            <span>Especialidade</span>
-                            <div>Dermatologia</div>
-                        </div>
-                        <div className="container-info-ultimas">
-                            <span>Especialista</span>
-                            <div>Cládio Galeno</div>
-                        </div>
-                    </div>
-
-                    <div className="container-consultas-mes">
-                        <div className="container-info-ultimas">
-                            <span>Paciente</span>
-                            <div>Warllei Martins</div>
-                        </div>
-                        <div className="container-info-ultimas">
-                            <span>Data</span>
-                            <div>15/03/2023</div>
-                        </div>
-                        <div className="container-info-ultimas">
-                            <span>Horário</span>
-                            <div>10:30</div>
-                        </div>
-                        <div className="container-info-ultimas">
-                            <span>Especialidade</span>
-                            <div>Dermatologia</div>
-                        </div>
-                        <div className="container-info-ultimas">
-                            <span>Especialista</span>
-                            <div>Cládio Galeno</div>
-                        </div>
-                    </div>
-
-                    <div className="container-consultas-mes">
-                        <div className="container-info-ultimas">
-                            <span>Paciente</span>
-                            <div>Warllei Martins</div>
-                        </div>
-                        <div className="container-info-ultimas">
-                            <span>Data</span>
-                            <div>15/03/2023</div>
-                        </div>
-                        <div className="container-info-ultimas">
-                            <span>Horário</span>
-                            <div>10:30</div>
-                        </div>
-                        <div className="container-info-ultimas">
-                            <span>Especialidade</span>
-                            <div>Dermatologia</div>
-                        </div>
-                        <div className="container-info-ultimas">
-                            <span>Especialista</span>
-                            <div>Cládio Galeno</div>
-                        </div>
-                    </div>
-
-                    <div className="container-consultas-mes">
-                        <div className="container-info-ultimas">
-                            <span>Paciente</span>
-                            <div>Warllei Martins</div>
-                        </div>
-                        <div className="container-info-ultimas">
-                            <span>Data</span>
-                            <div>15/03/2023</div>
-                        </div>
-                        <div className="container-info-ultimas">
-                            <span>Horário</span>
-                            <div>10:30</div>
-                        </div>
-                        <div className="container-info-ultimas">
-                            <span>Especialidade</span>
-                            <div>Dermatologia</div>
-                        </div>
-                        <div className="container-info-ultimas">
-                            <span>Especialista</span>
-                            <div>Cládio Galeno</div>
-                        </div>
-                    </div>
+                    {
+                        data.map((e) => {
+                            return (
+                                <div className="container-consultas-mes">
+                                    <div className="container-info-ultimas">
+                                        <span>Paciente</span>
+                                        <div>{e.paciente}</div>
+                                    </div>
+                                    <div className="container-info-ultimas">
+                                        <span>Data</span>
+                                        <div>{e.data}</div>
+                                    </div>
+                                    <div className="container-info-ultimas">
+                                        <span>Horário</span>
+                                        <div>{e.hora}</div>
+                                    </div>
+                                    <div className="container-info-ultimas">
+                                        <span>Especialidade</span>
+                                        <div>{e.especialidade}</div>
+                                    </div>
+                                    <div className="container-info-ultimas">
+                                        <span>Especialista</span>
+                                        <div>{e.doutor}</div>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
 
             </div>
