@@ -26,8 +26,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: .2s ease-in-out;
             background-color: #00cc81;
         }
+    }
+
+    .field:hover {
+        background-color: #014e3d;
     }
 
     .main-logo {
@@ -106,6 +111,7 @@
                 display: flex;
                 font-size: 1.5rem;
                 pointer-events: none;
+                justify-content: flex-start;
 
                 span {
                     margin-right: 10px;

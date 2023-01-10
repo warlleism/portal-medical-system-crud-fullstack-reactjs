@@ -1,0 +1,162 @@
+.home-page-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .container-consultas-especialistas {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+
+        .container-info {
+            width: 340px;
+            height: 170px;
+            color: #fff;
+            overflow: hidden;
+            position: relative;
+            border-radius: 5px;
+
+            .container-todas-consultas-especialistas {
+                height: 26%;
+                display: flex;
+                font-size: 1.3rem;
+                align-items: center;
+                justify-content: center;
+                background-color: #009860;
+            }
+
+            .container-quantidade-consultas-especialistas {
+                height: 100%;
+                display: flex;
+
+                div:nth-child(1) {
+                    width: 20%;
+                    background-color: #009860;
+                }
+
+                div:nth-child(2) {
+                    width: 80%;
+                    display: flex;
+                    font-size: 4rem;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: #014E31;
+
+                    div:nth-child(1) {
+                        margin-bottom: 35px;
+                        margin-right: 20px;
+                        background-color: transparent;
+                    }
+                }
+            }
+        }
+    }
+
+    .container-ultimas-consultas-atualizacoes {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+
+        .container-bloco-info {
+            display: flex;
+            width: 330px;
+            color: #fff;
+            height: 50px;
+            align-items: center;
+            justify-content: space-between;
+
+            div {
+                width: 48%;
+                height: 100%;
+                display: flex;
+                cursor: pointer;
+                align-items: center;
+                justify-content: center;
+                background-color: #014E31;
+                transition: .5s ease-in-out;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+            }
+
+            div:hover {
+                background-color: #009860;
+            }
+
+        }
+
+
+        .container-ultimas-info {
+            width: 100%;
+            display: flex;
+            color: #fff;
+            height: 300px;
+            padding: 30px;
+            overflow-y: scroll;
+            align-items: center;
+            box-sizing: border-box;
+            flex-direction: column;
+            background-color: #009860;
+            justify-content: space-between;
+
+            .container-consultas-mes {
+                width: 90%;
+                display: flex;
+                margin-bottom: 40px;
+                box-sizing: border-box;
+                justify-content: space-between;
+
+                .container-info-ultimas {
+                    span {
+                        font-size: 0.8rem;
+                        font-weight: 100;
+                    }
+
+                    div {
+                        font-weight: 300;
+                        margin-top: 10px;
+                        font-size: 1.2rem;
+                    }
+                }
+
+            }
+        }
+
+    }
+
+    .container-ouvidoria{
+        width: 80%;
+        height: 300px;
+        color: #fff;
+        background-color: #009860;
+        div:nth-child(1){
+            width: 100%;
+            display: flex;
+            margin-top: 20px;
+            align-items: center;
+            img{
+                margin-left: 40px;
+                margin-right: 40px;
+            }
+            div:nth-child(1){
+                font-size: 2rem;
+            }
+            div:nth-child(2){
+                font-size: 1.3rem;
+            }
+        }
+
+        .container-canal{
+            width: 300px;
+            height: 50px;
+            display: flex;
+            margin-top: 50px;
+            margin-left: 50px;
+            border-radius: 5px;
+            align-items: center;
+            background-color: #014E31;
+            justify-content: center;
+        }
+    }
+}

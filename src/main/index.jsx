@@ -5,6 +5,7 @@ import './style.scss'
 import CadastrarConsultas from "../pages/consultas/cadastrar";
 import EditarConsultas from "../pages/consultas/editar";
 import VisualizarConsulta from "../pages/consultas/visualizar";
+import Home from "../pages/home";
 
 const Main = () => {
 
@@ -37,7 +38,11 @@ const Main = () => {
             }
 
         } else {
-
+            icon[0].style.justifyContent = 'flex-start'
+            icon[1].style.justifyContent = 'flex-start'
+            icon[2].style.justifyContent = 'flex-start'
+            icon[3].style.justifyContent = 'flex-start'
+            icon[4].style.justifyContent = 'flex-start'
             for (let i = 0; i <= data.length; i++) {
                 navTitle.style.opacity = 1
                 data[i].style.display = 'block'
@@ -60,15 +65,15 @@ const Main = () => {
     return (
         <BrowserRouter>
             <div>
-                <div className="nav-bar" id="navBar">
+                <div className="nav-bar" id="navBar" >
                     <div className="main-logo">
-                        <div id="hidden-bar-title" style={{ transition: ".5s ease-in-out" }}>
+                        <Link to={'/'} id="hidden-bar-title" style={{ transition: ".5s ease-in-out" }}>
                             <div><strong style={{ color: "#01DB8B" }}>M</strong>edical</div>
                             <div><strong style={{ color: "#01DB8B" }}>G</strong>roup
                                 <div className="circle">
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                         <div className="arrow-back-navbar" id="arrow-nav-bar">
                             {
                                 countNavBar
@@ -248,7 +253,7 @@ const Main = () => {
 
                 <div className="content-forms">
                     <Routes>
-                        {/* <Route path="/" element={<Main />} /> */}
+                        <Route path="/" element={<Home />} />
                         <Route path="/cadastrarConsulta" element={<CadastrarConsultas />} />
                         <Route path="/editarConsulta" element={<EditarConsultas />} />
                         <Route path="/visualizarConsulta" element={<VisualizarConsulta />} />

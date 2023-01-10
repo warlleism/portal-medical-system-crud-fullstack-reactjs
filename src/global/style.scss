@@ -3,8 +3,23 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
   text-decoration: none;
+  scroll-behavior: smooth;
+  font-family: 'Roboto', sans-serif;
+}
+
+*::-webkit-scrollbar {
+  width: 7px; 
+}
+
+*::-webkit-scrollbar-track {
+  background: #014E31;   
+  
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #06f599;   
+  border-radius: 20px; 
 }
 
 body {
@@ -102,12 +117,12 @@ a{
   &>span {
     width: 90px;
     font-size: 0.9rem;
-    font-weight: 400;
+    font-weight: 500;
     padding: 8px 12px;
     line-height: 25px;
     text-align: center;
-    background: #27fe88;
-    border: 1px solid #27fe88;
+    background: #02eb6b;
+    border: 1px solid #02eb6b;
     color: rgba(46, 46, 46, 0.918);
     transition: background .3s ease, border .3s ease, color .3s ease;
   }
@@ -115,8 +130,8 @@ a{
   &:focus-within {
     &>span {
       color: #fff;
-      background: #27fe88;
-      border-color: #27fe88;
+      background: #03b955;
+      border-color: #03b955;
     }
   }
 }

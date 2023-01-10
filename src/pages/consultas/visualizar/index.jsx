@@ -10,7 +10,8 @@ const VisualizarConsulta = () => {
 
     const { editData, setEditData } = useContext(Context);
 
-    const [excluir, setExcluir] = useState(false)
+    const [id, setId] = useState('')
+    const [excluir, setExcluir] = useState(true)
     const [itens, setItens] = useState([])
     const [itensPerPage, setItensPerPage] = useState(4)
     const [currentPage, setCurrentPage] = useState(0)
@@ -27,11 +28,13 @@ const VisualizarConsulta = () => {
         setItens(result)
     }
 
-    fetchData()
+    useEffect(() => {
+        fetchData()
+    }, [itens])
 
 
     //Lógica para enviar post de nova consulta
-    const DeletarConsulta = (id) => {
+    const DeletarConsulta = () => {
 
         const OptionsRegister = {
             body: JSON.stringify({ id: id }),
@@ -56,9 +59,8 @@ const VisualizarConsulta = () => {
                     })
                 }
             })
-
         fetchData()
-        setExcluir(false)
+        setId('')
     }
 
 
@@ -69,10 +71,35 @@ const VisualizarConsulta = () => {
             </div>
 
             {
+                id == ''
+                    ?
+                    false
+                    :
+                    < div className="content-excluir" >
+                        <div className="texto-confirmar">
+                            <div>Confirmar Ação</div>
+                            <span class="material-symbols-outlined">
+                                info
+                            </span>
+                        </div>
+                        <div className="line"></div>
+                        <div className="content-excluir-text">Esta ação não pode ser desfeita! tem certeza que deseja continuar?</div>
+                        <div className="container-acao">
+                            <div className="modal-confirm" onClick={() => DeletarConsulta()}>
+                                Excluir
+                            </div>
+                            <div className="modal-confirm rigth" onClick={() => setId('')}>
+                                Cancelar
+                            </div>
+                        </div>
+                    </div>
+            }
+
+            {
                 currentItens.map((e) => {
                     return (
-                        <div className="content-visualizar-consultas">
-                            <div className="paciente-field">
+                        <div className="content-visualizar-consultas" key={e.id} >
+                            <div className="paciente-field" style={{ pointerEvents: "none" }}>
                                 <span>Paciente</span>
                                 <div>{e.paciente}</div>
                             </div>
@@ -94,7 +121,7 @@ const VisualizarConsulta = () => {
                                     <div>{e.hora}</div>
                                 </div>
                             </div>
-                            <Link to={'/editarConsulta'} class="material-symbols-outlined edit-icon" onClick={() => setEditData({
+                            <Link to={'/editarConsulta'} className="material-symbols-outlined edit-icon" onClick={() => setEditData({
                                 id: e.id,
                                 paciente: e.paciente,
                                 especialidade: e.especialidade,
@@ -105,24 +132,12 @@ const VisualizarConsulta = () => {
                             })} >
                                 edit
                             </Link>
-                            <div class="material-symbols-outlined edit-icon" style={{ right: 70 }} onClick={() => setExcluir(true)}>
+                            <div className="material-symbols-outlined edit-icon" style={{ right: 70 }} onClick={() => {
+                                setId(e.id)
+                                window.scrollTo(0, 0)
+                            }}>
                                 delete
                             </div>
-                            {
-                                excluir
-
-                                    ?
-                                    <>
-                                        <div className="modal-confirm" onClick={() => DeletarConsulta(e.id)}>
-                                            Confirmar
-                                        </div>
-                                        <div className="modal-confirm rigth" onClick={() => setExcluir(false)}>
-                                            Cancelar
-                                        </div>
-                                    </>
-                                    :
-                                    false
-                            }
                         </div>
                     )
                 })
@@ -132,7 +147,7 @@ const VisualizarConsulta = () => {
                 <div onClick={(e) => setCurrentPage(currentPage == 0 ? currentPage : currentPage - 1)}>Anterior</div>
                 {
                     Array.from(Array(pages), (item, index) => {
-                        return <button value={index} onClick={(e) => setCurrentPage(Number(e.target.value))}>{index + 1}</button>
+                        return <button value={index} key={index} onClick={(e) => setCurrentPage(Number(e.target.value))}>{index + 1}</button>
                     })
                 }
                 <div onClick={(e) => setCurrentPage(currentPage == pages - 1 ? currentPage : currentPage + 1)}>Próximo</div>
