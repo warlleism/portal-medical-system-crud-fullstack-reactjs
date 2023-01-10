@@ -32,7 +32,7 @@ Router.put('/editarConsulta', editarConsulta)
 Router.post('/novoEspecialista', criarNovoEspecialista)
 Router.post('/listarEspecialista', listarEspecialista)
 Router.get('/todosEspecialistas', listarTodosEspecialistas)
-Router.post('/deletarEspecialista', deletarEspecialista)
+Router.delete('/deletarEspecialista', deletarEspecialista)
 Router.put('/editarEspecialista', editarEspecialista)
 
 Router.get('/consultasHome', consultasHome)

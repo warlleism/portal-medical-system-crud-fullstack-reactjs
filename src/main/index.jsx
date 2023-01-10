@@ -6,6 +6,9 @@ import './style.scss'
 import CadastrarConsultas from "../pages/consultas/cadastrar";
 import EditarConsultas from "../pages/consultas/editar";
 import VisualizarConsulta from "../pages/consultas/visualizar";
+import CadastrarEspecialista from "../pages/especialistas/cadastrar";
+import VisualizarEspecialistas from "../pages/especialistas/visualizar";
+import EditarEspecialista from "../pages/especialistas/editar";
 import Home from "../pages/home";
 
 const Main = () => {
@@ -97,15 +100,12 @@ const Main = () => {
                                 medicos && countNavBar == false
                                     ?
                                     <div className="container-field">
-                                        <div className="field">
+                                        <Link to={'/cadastrarEspecialista'} className="field">
                                             <div>Cadastrar</div>
-                                        </div>
-                                        <div className="field">
+                                        </Link>
+                                        <Link to={'visualizarEspecialistas'} className="field">
                                             <div>Visualizar</div>
-                                        </div>
-                                        <div className="field">
-                                            <div>Editar</div>
-                                        </div>
+                                        </Link>
                                     </div>
                                     :
                                     false
@@ -212,6 +212,9 @@ const Main = () => {
                         <Route path="/cadastrarConsulta" element={<CadastrarConsultas />} />
                         <Route path="/editarConsulta" element={<EditarConsultas />} />
                         <Route path="/visualizarConsulta" element={<VisualizarConsulta />} />
+                        <Route path="/cadastrarEspecialista" element={<CadastrarEspecialista />} />
+                        <Route path="/visualizarEspecialistas" element={<VisualizarEspecialistas />} />
+                        <Route path="/editarEspecialista" element={<EditarEspecialista />} />
                     </Routes>
 
                 </Container>

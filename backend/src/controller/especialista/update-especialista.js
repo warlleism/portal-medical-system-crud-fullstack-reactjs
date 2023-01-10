@@ -6,7 +6,7 @@ const editarEspecialista = async (req, res) => {
 
     try {
         const editarEspecialista = await especialista.update({  nome, especialidade, contato }, { where: { id: id } })
-        return res.status(200).send('Editado com sucesso');
+        return res.status(200).send({ status: 200, sucess: 'Editado com sucesso' });
     } catch (err) {
         res.status(400).send({ error: 'Algo deu errado! ' + err });
     }
