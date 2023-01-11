@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { TopTitulo } from "../../../styled/styled";
-import Swal from "sweetalert2";
+import useGetData from './../../../hook/getData';
+import apiUtil from "../../../hook/apiUtil";
 import '../../../global/cadastrar.scss'
+
 
 const CadastrarConsultas = () => {
 
-    const [especialidades, setEspecialidades] = useState([])
+    const [especialidades] = useGetData('http://localhost:3001/todasEspecialidades')
     const [searchFilter, setSearchFilter] = useState([])
     const [handler, setHandler] = useState([])
+
+    const apiMetodos = useMemo(() => new apiUtil(), []);
 
     const [formulario, setFormulario] = useState({
         paciente: "",
@@ -20,22 +24,13 @@ const CadastrarConsultas = () => {
 
     //Consumindo apis que retornam todos especialistas e especialidades
     useEffect(() => {
-        const fetchData = async () => {
-            const result = await fetch('http://localhost:3001/todasEspecialidades')
-                .then(response => response.json())
-                .then(data => data)
-
-            setEspecialidades(result)
-        }
         const fetchDataEspecialistas = async () => {
             const result = await fetch('http://localhost:3001/todosEspecialistas')
                 .then(response => response.json())
                 .then(data => data)
-
             setHandler(result)
         }
         fetchDataEspecialistas()
-        fetchData()
     }, [])
 
 
@@ -48,35 +43,12 @@ const CadastrarConsultas = () => {
         setSearchFilter(newFilter)
     }
 
-    //configuração para fazer post
-    const OptionsRegister = {
-        body: JSON.stringify(formulario),
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
+
 
     //Lógica para enviar post de nova consulta
     const EnviarDados = async (event) => {
-
         event.preventDefault()
-
-        await fetch('http://localhost:3001/novaConsulta', OptionsRegister)
-            .then(res => res.json())
-            .then(data => {
-               if (data.status == 200) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: data.sucess,
-                    })
-                } else {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: data.error,
-                    })
-                }
-            })
+       apiMetodos.createData('http://localhost:3001/novaConsulta', formulario)
     }
 
     //UseEffect chamando sempre que o campo especialidade é preenchido (complementa lógica de filtragem)
@@ -123,8 +95,7 @@ const CadastrarConsultas = () => {
                         {
                             especialidades?.map((e) => {
                                 return (
-                                    <option value={e.nome}>{e.nome}</option>
-
+                                    <option value={e.especialidade}>{e.especialidade}</option>
                                 )
                             })
                         }
@@ -135,7 +106,6 @@ const CadastrarConsultas = () => {
                     <span>Doutor</span>
                     {
                         searchFilter.length == 0
-
                             ?
                             <select className="form-field" type="text" onChange={(e) => setFormulario({ ...formulario, doutor: e.target.value })} disabled>
                                 <option value="">Selecione...</option>

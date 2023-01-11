@@ -1,13 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Context } from "../../../context/provider";
 import { TopTitulo } from "../../../styled/styled";
-import Swal from "sweetalert2";
 import '../../../global/editar.scss'
+import apiUtil from "../../../hook/apiUtil";
 
 
 const EditarEspecialidade = () => {
 
     const { editData, setEditData } = useContext(Context);
+    const apiMetodos = useMemo(() => new apiUtil(), []);
 
     const [formulario, setFormulario] = useState({
         id: editData?.id,
@@ -15,44 +16,19 @@ const EditarEspecialidade = () => {
     })
 
 
-    //configuração para fazer post
-    const OptionsRegister = {
-        body: JSON.stringify(formulario),
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
 
-    //Lógica para enviar post de nova consulta
-    const EditarConsulta = async (event) => {
-
+    //Lógica para enviar post de nova especialidade
+    const EditarEspecialidade = async (event) => {
         event.preventDefault()
-
-        await fetch('http://localhost:3001/editarEspecialidade', OptionsRegister)
-            .then(res => res.json())
-            .then(data => {
-                if (data.status == 200) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'edição feita com sucesso',
-                    })
-                } else {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: "Ops.. ocorreu um erro",
-                    })
-                }
-            })
+        apiMetodos.updateData('http://localhost:3001/editarEspecialidade', formulario)
     }
-
 
     return (
         <>
             <TopTitulo>
                 Editar Especialidade
             </TopTitulo>
-            <form onSubmit={EditarConsulta} className="main-editar-consulta">
+            <form onSubmit={EditarEspecialidade} className="main-editar-consulta">
                 <div class="form-group">
                     <span>Especialidade</span>
                     <input required className="form-field" type="text" defaultValue={formulario.especialidade} name="name" onChange={(e) => setFormulario({ ...formulario, especialidade: e.target.value })} />

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { TopTitulo } from "../../../styled/styled";
 import { useContext } from 'react';
 import Swal from "sweetalert2";
-
 import '../../../global/visualizar.scss'
 import { Link } from "react-router-dom";
 
@@ -105,11 +104,11 @@ const VisualizarConsulta = () => {
                         return (
                             <div className="content-visualizar-consultas" key={e.id} >
                                 <div style={{display: "flex"}}>
-                                    <div className="paciente-field" style={{ pointerEvents: "none" }}>
+                                    <div className="paciente-field">
                                         <span>Paciente</span>
                                         <div>{e.paciente}</div>
                                     </div>
-                                    <div className="paciente-field" style={{ pointerEvents: "none" }}>
+                                    <div className="paciente-field">
                                         <span>Contato</span>
                                         <div>{e.contato}</div>
                                     </div>

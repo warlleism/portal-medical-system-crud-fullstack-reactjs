@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Context } from "../../../context/provider";
 import { TopTitulo } from "../../../styled/styled";
-import Swal from "sweetalert2";
+import apiUtil from "../../../hook/apiUtil";
 import '../../../global/editar.scss'
 
 const EditarConsultas = () => {
@@ -10,6 +10,8 @@ const EditarConsultas = () => {
     const [especialidades, setEspecialidades] = useState([])
     const [searchFilter, setSearchFilter] = useState([])
     const [handler, setHandler] = useState([])
+
+    const apiMetodos = useMemo(() => new apiUtil(), []);
 
     const [formulario, setFormulario] = useState({
         id: editData?.id,
@@ -62,24 +64,8 @@ const EditarConsultas = () => {
 
     //Lógica para enviar post de nova consulta
     const EditarConsulta = async (event) => {
-
         event.preventDefault()
-
-        await fetch('http://localhost:3001/editarConsulta', OptionsRegister)
-            .then(res => res.json())
-            .then(data => {
-                if (data.status == 200) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'edição feita com sucesso',
-                    })
-                } else {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: "Ops.. ocorreu um erro",
-                    })
-                }
-            })
+        apiMetodos.updateData('http://localhost:3001/editarConsulta', formulario)
     }
 
     //UseEffect chamando sempre que o campo especialidade é preenchido (complementa lógica de filtragem)
@@ -111,6 +97,7 @@ const EditarConsultas = () => {
 
     return (
         <>
+        {console.log(especialidades)}
             <TopTitulo>
                 Editar consulta
             </TopTitulo>
@@ -126,7 +113,7 @@ const EditarConsultas = () => {
                         {
                             especialidades?.map((e) => {
                                 return (
-                                    <option value={e.nome}>{e.nome}</option>
+                                    <option value={e.especialidade}>{e.especialidade}</option>
                                 )
                             })
                         }

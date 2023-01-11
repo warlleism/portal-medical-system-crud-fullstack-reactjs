@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { TopTitulo } from "../../../styled/styled";
-import Swal from "sweetalert2";
+import apiUtil from "../../../hook/apiUtil";
 import '../../../global/cadastrar.scss'
+
 
 
 const CadastrarEspecialista = () => {
@@ -12,36 +13,12 @@ const CadastrarEspecialista = () => {
         contato: "",
     })
 
-
-    //configuração para fazer post
-    const OptionsRegister = {
-        body: JSON.stringify(formulario),
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
+    const apiMetodos = useMemo(() => new apiUtil(), []);
 
     //Lógica para enviar post de nova consulta
     const EnviarDados = async (event) => {
-
         event.preventDefault()
-
-        await fetch('http://localhost:3001/novoEspecialista', OptionsRegister)
-            .then(res => res.json())
-            .then(data => {
-                if (data.status == 200) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: data.sucess,
-                    })
-                } else {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: data.error,
-                    })
-                }
-            })
+        apiMetodos.createData('http://localhost:3001/novoEspecialista', formulario)
     }
 
 

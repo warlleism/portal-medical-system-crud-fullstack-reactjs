@@ -1,13 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { Context } from "../../../context/provider";
 import { TopTitulo } from "../../../styled/styled";
-import Swal from "sweetalert2";
+import apiUtil from "../../../hook/apiUtil";
 import '../../../global/editar.scss'
 
 
 const EditarEspecialista = () => {
 
     const { editData, setEditData } = useContext(Context);
+    const apiMetodos = useMemo(() => new apiUtil(), []);
+
 
     const [formulario, setFormulario] = useState({
         id: editData?.id,
@@ -17,35 +19,10 @@ const EditarEspecialista = () => {
     })
 
 
-    //configuração para fazer post
-    const OptionsRegister = {
-        body: JSON.stringify(formulario),
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
-
     //Lógica para enviar post de nova consulta
     const EditarConsulta = async (event) => {
-
         event.preventDefault()
-
-        await fetch('http://localhost:3001/editarEspecialista', OptionsRegister)
-            .then(res => res.json())
-            .then(data => {
-                if (data.status == 200) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'edição feita com sucesso',
-                    })
-                } else {
-                    Swal.fire({
-                        icon: 'warning',
-                        title: "Ops.. ocorreu um erro",
-                    })
-                }
-            })
+        apiMetodos.updateData('http://localhost:3001/editarEspecialista', formulario)
     }
 
 

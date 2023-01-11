@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { TopTitulo } from "../../../styled/styled";
 import { useContext } from 'react';
 import Swal from "sweetalert2";
-
 import '../../../global/visualizar.scss'
 import { Link } from "react-router-dom";
 
@@ -11,12 +10,11 @@ const VisualizarEspecialidades = () => {
 
     const { editData, setEditData } = useContext(Context);
 
-
     const [count, seCount] = useState(0)
 
     const [id, setId] = useState('')
     const [itens, setItens] = useState([])
-    const [itensPerPage, setItensPerPage] = useState(4)
+    const [itensPerPage, setItensPerPage] = useState(5)
     const [currentPage, setCurrentPage] = useState(0)
 
     const pages = Math.ceil(itens.length / itensPerPage)
@@ -98,15 +96,15 @@ const VisualizarEspecialidades = () => {
                             </div>
                         </div>
                 }
-                <div style={{width: "90%", display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap"}}>
+                <div style={{ width: "90%", display: "flex", justifyContent: "space-evenly", alignItems: "center", flexWrap: "wrap"}}>
                     {
                         currentItens.map((e) => {
                             return (
-                                <div className="content-visualizar-consultas" key={e.id} style={{ width: 300, marginBottom: 10, marginLeft: 10 }} >
+                                <div className="content-visualizar-consultas" key={e.id} style={{  marginBottom: 10 }} >
                                     <div className="informacoes-field">
-                                        <div className="field-consulta-itens">
+                                        <div className="field-consulta-itens" >
                                             <span>Especialidade</span>
-                                            <div style={{ fontSize: "2rem", marginTop: 50 }}>{e.especialidade}</div>
+                                            <div style={{  fontSize: "2rem", marginTop: 40 }}>{e.especialidade}</div>
                                         </div>
                                     </div>
                                     <Link to={'/editarEspecialidades'} className="material-symbols-outlined edit-icon" onClick={() => setEditData({
