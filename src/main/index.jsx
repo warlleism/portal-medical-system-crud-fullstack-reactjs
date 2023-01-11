@@ -1,7 +1,7 @@
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { Container } from "../styled/styled";
 import $ from "jquery";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './style.scss'
 
 import CadastrarConsultas from "../pages/consultas/cadastrar";
@@ -20,6 +20,7 @@ const Main = () => {
     const [consultas, setConsultas] = useState(false)
     const [medicos, setMedicos] = useState(false)
     const [especialidades, setEspecialidades] = useState(false)
+    const [ouvidoria, setOuvidoria] = useState(false)
 
     $("#container").click(function () {
         setConsultas(false)
@@ -32,7 +33,14 @@ const Main = () => {
         <BrowserRouter>
             <div>
                 <div className="nav-bar" id="navBar" >
-                    <div className="main-logo" id="logo">
+                    <div className="main-logo" id="logo" onClick={() => {
+                        setConsultas(false)
+                        setMedicos(false)
+                        setConsultas(false)
+                        setEspecialidades(false)
+                        setOuvidoria(false)
+
+                    }}>
                         <Link to={'/'} id="hidden-bar-title" style={{ transition: ".5s ease-in-out" }}>
                             <div><strong style={{ color: "#01DB8B" }}>M</strong>edical</div>
                             <div><strong style={{ color: "#01DB8B" }}>G</strong>roup
@@ -49,12 +57,15 @@ const Main = () => {
                     <div className="list-links-field">
 
                         <div>
-                            <div className="link-field" onClick={() => {
-                                setConsultas(!consultas)
-                                setMedicos(false)
-                                setEspecialidades(false)
-                            }}>
-                                <div className="title-icon-link-field" id="icon-center">
+                            <div className="link-field"
+                                style={{ backgroundColor: consultas ? "#009860" : false }}
+                                onClick={() => {
+                                    setConsultas(!consultas)
+                                    setMedicos(false)
+                                    setEspecialidades(false)
+                                    setOuvidoria(false)
+                                }}>
+                                <div className="title-icon-link-field" >
                                     <span className="material-symbols-outlined">
                                         content_paste
                                     </span>
@@ -82,12 +93,14 @@ const Main = () => {
 
                         <div>
                             <div className="link-field"
+                                style={{ backgroundColor: medicos ? "#009860" : false }}
                                 onClick={() => {
                                     setMedicos(!medicos)
                                     setConsultas(false)
                                     setEspecialidades(false)
+                                    setOuvidoria(false)
                                 }}>
-                                <div className="title-icon-link-field" id="icon-center">
+                                <div className="title-icon-link-field" >
                                     <span className="material-symbols-outlined">
                                         vaccines
                                     </span>
@@ -114,14 +127,16 @@ const Main = () => {
                             }
                         </div>
 
-
                         <div>
-                            <div className="link-field" onClick={() => {
-                                setEspecialidades(!especialidades)
-                                setConsultas(false)
-                                setMedicos(false)
-                            }}>
-                                <div className="title-icon-link-field" id="icon-center">
+                            <div className="link-field"
+                                style={{ backgroundColor: especialidades ? "#009860" : false }}
+                                onClick={() => {
+                                    setEspecialidades(!especialidades)
+                                    setConsultas(false)
+                                    setMedicos(false)
+                                    setOuvidoria(false)
+                                }}>
+                                <div className="title-icon-link-field" >
                                     <span className="material-symbols-outlined">
                                         stethoscope
                                     </span>
@@ -144,8 +159,16 @@ const Main = () => {
                             }
                         </div>
 
-                        <Link to={'/ouvidoria'} className="link-field">
-                            <div className="title-icon-link-field" id="icon-center">
+                        <Link to={'/ouvidoria'} className="link-field"
+                            style={{ backgroundColor: ouvidoria ? "#009860" : false }}
+                            onClick={() => {
+                                setConsultas(false)
+                                setMedicos(false)
+                                setConsultas(false)
+                                setEspecialidades(false)
+                                setOuvidoria(!ouvidoria)
+                            }}>
+                            <div className="title-icon-link-field" >
                                 <span className="material-symbols-outlined">
                                     support_agent
                                 </span>

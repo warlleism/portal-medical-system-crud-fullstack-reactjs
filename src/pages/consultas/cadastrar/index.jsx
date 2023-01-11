@@ -106,7 +106,6 @@ const CadastrarConsultas = () => {
 
     return (
         <>
-        {console.log(formulario)}
             <TopTitulo>
                 Criar nova consultas
             </TopTitulo>

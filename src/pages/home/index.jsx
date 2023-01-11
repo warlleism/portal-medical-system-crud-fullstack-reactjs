@@ -31,9 +31,6 @@ const Home = () => {
 
     return (
         <div className="home-page-container">
-{
-    console.log(qtdInfo[0])
-}
             <div className="container-consultas-especialistas">
                 <Link to={'/visualizarConsulta'} className="container-info">
                     <div className="container-todas-consultas-especialistas">

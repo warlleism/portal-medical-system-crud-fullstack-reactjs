@@ -49,7 +49,6 @@ const EditarEspecialidade = () => {
 
     return (
         <>
-        {console.log(formulario)}
             <TopTitulo>
                 Editar Especialidade
             </TopTitulo>

@@ -70,7 +70,6 @@ const VisualizarEspecialidades = () => {
 
     return (
         <>
-        {console.log(currentItens)}
             <TopTitulo>
                 Especialidades
             </TopTitulo>
