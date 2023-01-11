@@ -1,6 +1,7 @@
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import React, { useState } from "react";
 import { Container } from "../styled/styled";
+import $ from "jquery";
+import React, { useState } from "react";
 import './style.scss'
 
 import CadastrarConsultas from "../pages/consultas/cadastrar";
@@ -9,30 +10,29 @@ import VisualizarConsulta from "../pages/consultas/visualizar";
 import CadastrarEspecialista from "../pages/especialistas/cadastrar";
 import VisualizarEspecialistas from "../pages/especialistas/visualizar";
 import EditarEspecialista from "../pages/especialistas/editar";
+import VisualizarEspecialidades from "../pages/especialidades/visualizar";
+import EditarEspecialidade from "../pages/especialidades/editar";
+import Ouvidoria from "../pages/ouvidoria";
 import Home from "../pages/home";
 
 const Main = () => {
 
     const [consultas, setConsultas] = useState(false)
     const [medicos, setMedicos] = useState(false)
-    const [pacientes, setPacientes] = useState(false)
-    const [procedimentos, setProcedimentos] = useState(false)
-    const [countNavBar, setCountNavBar] = useState(false)
+    const [especialidades, setEspecialidades] = useState(false)
 
-    const alterData = (event) => {
-        const arrow = event.querySelector('i')
-        if (consultas || medicos || pacientes || procedimentos) {
-            arrow.style.transform = 'rotate(0deg)'
-        } else {
-            arrow.style.transform = 'rotate(-180deg)'
-        }
-    }
+    $("#container").click(function () {
+        setConsultas(false)
+        setMedicos(false)
+        setEspecialidades(false)
+    });
+
 
     return (
         <BrowserRouter>
             <div>
                 <div className="nav-bar" id="navBar" >
-                    <div className="main-logo">
+                    <div className="main-logo" id="logo">
                         <Link to={'/'} id="hidden-bar-title" style={{ transition: ".5s ease-in-out" }}>
                             <div><strong style={{ color: "#01DB8B" }}>M</strong>edical</div>
                             <div><strong style={{ color: "#01DB8B" }}>G</strong>roup
@@ -49,9 +49,10 @@ const Main = () => {
                     <div className="list-links-field">
 
                         <div>
-                            <div className="link-field" onClick={(event) => {
-                                alterData(event.target)
+                            <div className="link-field" onClick={() => {
                                 setConsultas(!consultas)
+                                setMedicos(false)
+                                setEspecialidades(false)
                             }}>
                                 <div className="title-icon-link-field" id="icon-center">
                                     <span className="material-symbols-outlined">
@@ -64,7 +65,7 @@ const Main = () => {
                                 </i>
                             </div>
                             {
-                                consultas && countNavBar == false
+                                consultas
                                     ?
                                     <div className="container-field">
                                         <Link to={'/cadastrarConsulta'} className="field">
@@ -81,15 +82,16 @@ const Main = () => {
 
                         <div>
                             <div className="link-field"
-                                onClick={(event) => {
-                                    alterData(event.target)
+                                onClick={() => {
                                     setMedicos(!medicos)
+                                    setConsultas(false)
+                                    setEspecialidades(false)
                                 }}>
                                 <div className="title-icon-link-field" id="icon-center">
                                     <span className="material-symbols-outlined">
                                         vaccines
                                     </span>
-                                    <div>Médicos</div>
+                                    <div>Doutores(a)</div>
                                 </div>
                                 <i className="material-symbols-outlined">
                                     arrow_drop_down
@@ -97,14 +99,14 @@ const Main = () => {
                             </div>
 
                             {
-                                medicos && countNavBar == false
+                                medicos
                                     ?
                                     <div className="container-field">
                                         <Link to={'/cadastrarEspecialista'} className="field">
-                                            <div>Cadastrar</div>
+                                            <div>Cadastrar novo doutor(a)</div>
                                         </Link>
                                         <Link to={'visualizarEspecialistas'} className="field">
-                                            <div>Visualizar</div>
+                                            <div>Doutores(a)</div>
                                         </Link>
                                     </div>
                                     :
@@ -112,85 +114,47 @@ const Main = () => {
                             }
                         </div>
 
-                        <div>
-                            <div className="link-field" onClick={(event) => {
-                                alterData(event.target)
-                                setPacientes(!pacientes)
-                            }}>
-                                <div className="title-icon-link-field" id="icon-center">
-                                    <span className="material-symbols-outlined">
-                                        person
-                                    </span>
-                                    <div>Pacientes</div>
-                                </div>
-                                <i className="material-symbols-outlined">
-                                    arrow_drop_down
-                                </i>
-                            </div>
-                            {
-                                pacientes && countNavBar == false
-                                    ?
-                                    <div className="container-field">
-                                        <div className="field">
-                                            <div>Cadastrar</div>
-                                        </div>
-                                        <div className="field">
-                                            <div>Visualizar</div>
-                                        </div>
-                                        <div className="field">
-                                            <div>Editar</div>
-                                        </div>
-                                    </div>
-                                    :
-                                    false
-                            }
-                        </div>
 
                         <div>
-                            <div className="link-field" onClick={(event) => {
-                                alterData(event.target)
-                                setProcedimentos(!procedimentos)
+                            <div className="link-field" onClick={() => {
+                                setEspecialidades(!especialidades)
+                                setConsultas(false)
+                                setMedicos(false)
                             }}>
                                 <div className="title-icon-link-field" id="icon-center">
                                     <span className="material-symbols-outlined">
                                         stethoscope
                                     </span>
-                                    <div>Pricedimentos</div>
+                                    <div>Especialidades</div>
                                 </div>
                                 <i className="material-symbols-outlined">
                                     arrow_drop_down
                                 </i>
                             </div>
                             {
-                                procedimentos && countNavBar == false
+                                especialidades
                                     ?
                                     <div className="container-field">
-                                        <div className="field">
-                                            <div>Cadastrar</div>
-                                        </div>
-                                        <div className="field">
-                                            <div>Visualizar</div>
-                                        </div>
-                                        <div className="field">
-                                            <div>Editar</div>
-                                        </div>
+                                        <Link to={"/visualizarEspecialidades"} className="field">
+                                            <div>Especialidades</div>
+                                        </Link>
                                     </div>
                                     :
                                     false
                             }
                         </div>
 
-                        <div className="link-field">
+                        <Link to={'/ouvidoria'} className="link-field">
                             <div className="title-icon-link-field" id="icon-center">
                                 <span className="material-symbols-outlined">
                                     support_agent
                                 </span>
-                                <div>Contatos</div>
+                                <div>Ouvidoria</div>
                             </div>
-                            <i className="material-symbols-outlined" style={{ opacity: 0, pointerEvents: 'none' }}>
+                            <i className="material-symbols-outlined" style={{ opacity: 0, pointers: 'none' }}>
                                 arrow_drop_down
                             </i>
-                        </div>
+                        </Link>
                     </div>
 
                     <div className="profile-login-logout">
@@ -206,7 +170,7 @@ const Main = () => {
                     </div>
                 </div>
 
-                <Container>
+                <Container id="container">
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/cadastrarConsulta" element={<CadastrarConsultas />} />
@@ -215,6 +179,9 @@ const Main = () => {
                         <Route path="/cadastrarEspecialista" element={<CadastrarEspecialista />} />
                         <Route path="/visualizarEspecialistas" element={<VisualizarEspecialistas />} />
                         <Route path="/editarEspecialista" element={<EditarEspecialista />} />
+                        <Route path="/visualizarEspecialidades" element={<VisualizarEspecialidades />} />
+                        <Route path="/editarEspecialidades" element={<EditarEspecialidade />} />
+                        <Route path="/ouvidoria" element={<Ouvidoria />} />
                     </Routes>
 
                 </Container>

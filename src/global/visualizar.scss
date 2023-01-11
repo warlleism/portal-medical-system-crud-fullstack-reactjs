@@ -1,0 +1,161 @@
+.main-visualizar-consultas {
+    height: 100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+  
+    .content-excluir {
+      top: 30px;
+      width: 700px;
+      z-index: 2;
+      height: 240px;
+      padding: 20px;
+      display: flex;
+      color: #fff;
+      position: absolute;
+      border-radius: 5px;
+      box-sizing: border-box;
+      flex-direction: column;
+      background-color: #202020;
+      justify-content: space-between;
+      box-shadow: 2px 1px 5px rgb(22, 22, 22);
+  
+  
+      .texto-confirmar{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+  
+      .container-acao {
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+  
+        .modal-confirm {
+          z-index: 2;
+          width: 100px;
+          height: 40px;
+          display: flex;
+          cursor: pointer;
+          font-weight: 600;
+          font-size: 1rem;
+          border-radius: 2px;
+          align-items: center;
+          justify-content: center;
+          color: rgb(255, 255, 255);
+          transition: .5s ease-in-out;
+          background-color: rgb(0, 255, 170);
+          box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.411);
+        }
+  
+        .rigth {
+          margin-left: 20px;
+          transition: .5s ease-in-out;
+          color: rgb(253, 253, 253);
+          background-color: rgb(2, 122, 82);
+        }
+  
+        .modal-confirm:hover,
+        .rigth:hover {
+          color: rgb(71, 71, 71);
+          background: #ebebeb;
+        }
+  
+      }
+  
+      .line {
+        width: 100%;
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.11);
+      }
+  
+  
+    }
+  
+  
+  
+    .paginação {
+      bottom: 10px;
+      display: flex;
+      align-items: center;
+      position: absolute;
+  
+      div,
+      button {
+        border: none;
+        padding: 10px;
+        color: #fff;
+        cursor: pointer;
+        margin-left: 2px;
+        font-weight: 600;
+        border-radius: 5px;
+        background-color: #03bd76;
+      }
+  
+      button {
+        padding: 10px 20px;
+  
+      }
+    }
+  
+    .content-visualizar-consultas {
+      width: 90%;
+      display: flex;
+      height: 160px;
+      padding: 20px;
+      color: #fff;
+      font-weight: 300;
+      border-radius: 2px;
+      position: relative;
+      flex-direction: column;
+      box-sizing: border-box;
+      background-color: #1aa874;
+      justify-content: space-between;
+  
+  
+  
+      .edit-icon {
+        top: 10px;
+        right: 10px;
+        padding: 7px;
+        cursor: pointer;
+        position: absolute;
+        border-radius: 100%;
+        background-color: #013d27;
+      }
+  
+      span {
+        font-weight: 600;
+      }
+  
+      .paciente-field {
+        width: 290px;
+        height: 50px;
+        margin-right: 10px;
+  
+        div {
+          font-size: 1.2rem;
+          font-weight: 100;
+        }
+      }
+  
+      .informacoes-field {
+        height: 50px;
+        display: flex;
+        justify-content: space-between;
+  
+        .field-consulta-itens {
+          display: flex;
+          flex-direction: column;
+  
+          div {
+            font-size: 1.3rem;
+            font-weight: 100;
+          }
+        }
+      }
+    }
+  }

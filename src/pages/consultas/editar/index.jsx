@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../../context/provider";
 import { TopTitulo } from "../../../styled/styled";
 import Swal from "sweetalert2";
-import './style.scss'
+import '../../../global/editar.scss'
 
 const EditarConsultas = () => {
 
@@ -24,7 +24,7 @@ const EditarConsultas = () => {
     //Consumindo apis que retornam todos especialistas e especialidades
     useEffect(() => {
         const fetchData = async () => {
-            const result = await fetch('http://localhost:3001/todasEspecialidade')
+            const result = await fetch('http://localhost:3001/todasEspecialidades')
                 .then(response => response.json())
                 .then(data => data)
 
@@ -112,7 +112,7 @@ const EditarConsultas = () => {
     return (
         <>
             <TopTitulo>
-                Editar de consultas
+                Editar consulta
             </TopTitulo>
             <form onSubmit={EditarConsulta} className="main-editar-consulta">
                 <div class="form-group">

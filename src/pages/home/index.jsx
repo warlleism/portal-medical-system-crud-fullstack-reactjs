@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import './style.scss'
 
 const Home = () => {
@@ -28,29 +29,15 @@ const Home = () => {
         fetchDataQtd()
     }, [])
 
-
     return (
         <div className="home-page-container">
 {
     console.log(qtdInfo[0])
 }
             <div className="container-consultas-especialistas">
-                <div className="container-info">
+                <Link to={'/visualizarConsulta'} className="container-info">
                     <div className="container-todas-consultas-especialistas">
                         Número de consultas
-                    </div>
-                    <div className="container-quantidade-consultas-especialistas">
-                        <div></div>
-                        <div>
-                            <div>
-                                {qtdInfo[0]}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="container-info">
-                    <div className="container-todas-consultas-especialistas">
-                        Especialistas Registrados
                     </div>
                     <div className="container-quantidade-consultas-especialistas">
                         <div></div>
@@ -60,14 +47,26 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </Link>
+                <Link to={'/visualizarEspecialistas'} className="container-info">
+                    <div className="container-todas-consultas-especialistas">
+                        Especialistas Registrados
+                    </div>
+                    <div className="container-quantidade-consultas-especialistas">
+                        <div></div>
+                        <div>
+                            <div>
+                                {qtdInfo[0]}
+                            </div>
+                        </div>
+                    </div>
+                </Link>
             </div>
 
             <div className="container-ultimas-consultas-atualizacoes">
 
                 <div className="container-bloco-info">
-                    <div>Ultimas Consultas</div>
-                    <div>Atualizações</div>
+                    <div>Ultimas Registros</div>
                 </div>
 
                 <div className="container-ultimas-info">
@@ -104,7 +103,6 @@ const Home = () => {
             </div>
 
             <div className="container-ouvidoria">
-
                 <div>
                     <img src={require('../../imagens/ouvidoria.png')} alt="" />
                     <div>
@@ -112,9 +110,9 @@ const Home = () => {
                         <div>Reclamação, denúncia, sugestão, lei de acesso...</div>
                     </div>
                 </div>
-                <div className="container-canal">
+                <Link to={'/ouvidoria'} className="container-canal">
                     Canal de comunicação
-                </div>
+                </Link>
 
             </div>
 

@@ -4,7 +4,7 @@ import { TopTitulo } from "../../../styled/styled";
 import { useContext } from 'react';
 import Swal from "sweetalert2";
 
-import './style.scss'
+import '../../../global/visualizar.scss'
 import { Link } from "react-router-dom";
 
 const VisualizarConsulta = () => {

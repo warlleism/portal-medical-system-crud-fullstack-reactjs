@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import '../../../global/visualizar.scss'
 import { Link } from "react-router-dom";
 
-const VisualizarEspecialistas = () => {
+const VisualizarEspecialidades = () => {
 
     const { editData, setEditData } = useContext(Context);
 
@@ -25,7 +25,7 @@ const VisualizarEspecialistas = () => {
     const currentItens = itens.slice(startIndex, endIndex)
 
     const fetchData = async () => {
-        const result = await fetch('http://localhost:3001/todosEspecialistas')
+        const result = await fetch('http://localhost:3001/todasEspecialidades')
             .then(response => response.json())
             .then(data => data)
         setItens(result)
@@ -47,7 +47,7 @@ const VisualizarEspecialistas = () => {
             },
         };
 
-        fetch('http://localhost:3001/deletarEspecialista', OptionsRegister)
+        fetch('http://localhost:3001/deletarEspecialidade', OptionsRegister)
             .then(res => res.json())
             .then(data => {
                 if (data.status == 200) {
@@ -67,10 +67,12 @@ const VisualizarEspecialistas = () => {
         seCount(count + 1)
     }
 
+
     return (
         <>
+        {console.log(currentItens)}
             <TopTitulo>
-                Doutores(a)
+                Especialidades
             </TopTitulo>
             <div className="main-visualizar-consultas">
                 {
@@ -97,45 +99,34 @@ const VisualizarEspecialistas = () => {
                             </div>
                         </div>
                 }
-
-                {
-                    currentItens.map((e) => {
-                        return (
-                            <div className="content-visualizar-consultas" key={e.id} >
-                                <div style={{ display: "flex" }}>
-                                    <div className="paciente-field" style={{ pointerEvents: "none" }}>
-                                        <span>Especialista</span>
-                                        <div>{e.nome}</div>
+                <div style={{width: "90%", display: "flex", justifyContent: "center", alignItems: "center", flexWrap: "wrap"}}>
+                    {
+                        currentItens.map((e) => {
+                            return (
+                                <div className="content-visualizar-consultas" key={e.id} style={{ width: 300, marginBottom: 10, marginLeft: 10 }} >
+                                    <div className="informacoes-field">
+                                        <div className="field-consulta-itens">
+                                            <span>Especialidade</span>
+                                            <div style={{ fontSize: "2rem", marginTop: 50 }}>{e.especialidade}</div>
+                                        </div>
                                     </div>
-                                    <div className="paciente-field" style={{ pointerEvents: "none" }}>
-                                        <span>Contato</span>
-                                        <div>{e.contato}</div>
+                                    <Link to={'/editarEspecialidades'} className="material-symbols-outlined edit-icon" onClick={() => setEditData({
+                                        id: e.id,
+                                        especialidade: e.especialidade
+                                    })} >
+                                        edit
+                                    </Link>
+                                    <div className="material-symbols-outlined edit-icon" style={{ right: 70 }} onClick={() => {
+                                        setId(e.id)
+                                        window.scrollTo(0, 0)
+                                    }}>
+                                        delete
                                     </div>
                                 </div>
-                                <div className="informacoes-field">
-                                    <div className="field-consulta-itens">
-                                        <span>Especialidade</span>
-                                        <div>{e.especialidade}</div>
-                                    </div>
-                                </div>
-                                <Link to={'/editarEspecialista'} className="material-symbols-outlined edit-icon" onClick={() => setEditData({
-                                    id: e.id,
-                                    nome: e.nome,
-                                    especialidade: e.especialidade,
-                                    contato: e.contato,
-                                })} >
-                                    edit
-                                </Link>
-                                <div className="material-symbols-outlined edit-icon" style={{ right: 70 }} onClick={() => {
-                                    setId(e.id)
-                                    window.scrollTo(0, 0)
-                                }}>
-                                    delete
-                                </div>
-                            </div>
-                        )
-                    })
-                }
+                            )
+                        })
+                    }
+                </div>
 
                 <div className="paginação">
                     <div onClick={(e) => setCurrentPage(currentPage == 0 ? currentPage : currentPage - 1)}>Anterior</div>
@@ -151,4 +142,4 @@ const VisualizarEspecialistas = () => {
     )
 }
 
-export default VisualizarEspecialistas;
+export default VisualizarEspecialidades;

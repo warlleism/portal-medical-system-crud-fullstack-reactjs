@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { TopTitulo } from "../../../styled/styled";
 import Swal from "sweetalert2";
-import './style.scss'
+import '../../../global/cadastrar.scss'
 
 const CadastrarConsultas = () => {
 
@@ -21,7 +21,7 @@ const CadastrarConsultas = () => {
     //Consumindo apis que retornam todos especialistas e especialidades
     useEffect(() => {
         const fetchData = async () => {
-            const result = await fetch('http://localhost:3001/todasEspecialidade')
+            const result = await fetch('http://localhost:3001/todasEspecialidades')
                 .then(response => response.json())
                 .then(data => data)
 
@@ -65,15 +65,15 @@ const CadastrarConsultas = () => {
         await fetch('http://localhost:3001/novaConsulta', OptionsRegister)
             .then(res => res.json())
             .then(data => {
-                if (data.status == 200) {
+               if (data.status == 200) {
                     Swal.fire({
                         icon: 'success',
-                        title: 'cadastro feito com sucesso',
+                        title: data.sucess,
                     })
                 } else {
                     Swal.fire({
                         icon: 'warning',
-                        title: "Ops.. ocorreu um erro",
+                        title: data.error,
                     })
                 }
             })

@@ -43,8 +43,8 @@ a{
 }
 
 .form-field {
-  display: block;
   width: 100%;
+  display: block;
   font-size: 14px;
   font-weight: 500;
   color: #524b4b;
@@ -82,11 +82,11 @@ a{
     }
 
     &:first-child {
-      border-radius: 6px 0 0 6px;
+      border-radius: 0;
     }
 
     &:last-child {
-      border-radius: 0 6px 6px 0;
+      border-radius: 0;
     }
 
     &:not(:first-child) {
@@ -104,14 +104,16 @@ a{
   }
 
   &>span {
-    width: 90px;
+  text-transform: uppercase;
+
+    width: 100px;
     font-size: 0.9rem;
     font-weight: 500;
     padding: 8px 12px;
     line-height: 25px;
     text-align: center;
-    background: #014e31;
-    border: 1px solid #014e31;
+    background: #02a365;
+    border: 1px solid #02a365;
     color: rgba(255, 255, 255, 0.918);
     transition: background .3s ease, border .3s ease, color .3s ease;
   }

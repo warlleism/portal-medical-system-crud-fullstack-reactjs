@@ -132,6 +132,7 @@
         height: 300px;
         color: #fff;
         background-color: #009860;
+
         div:nth-child(1){
             width: 100%;
             display: flex;
@@ -143,9 +144,12 @@
             }
             div:nth-child(1){
                 font-size: 2rem;
+                font-weight: 400;
             }
             div:nth-child(2){
-                font-size: 1.3rem;
+                font-weight: 300;
+                font-size: 1.1rem;
+ 
             }
         }
 

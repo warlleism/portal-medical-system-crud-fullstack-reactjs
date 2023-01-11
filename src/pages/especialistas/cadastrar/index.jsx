@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { TopTitulo } from "../../../styled/styled";
 import Swal from "sweetalert2";
-import './style.scss'
+import '../../../global/cadastrar.scss'
+
 
 const CadastrarEspecialista = () => {
 
@@ -32,12 +33,12 @@ const CadastrarEspecialista = () => {
                 if (data.status == 200) {
                     Swal.fire({
                         icon: 'success',
-                        title: 'cadastro feito com sucesso',
+                        title: data.sucess,
                     })
                 } else {
                     Swal.fire({
                         icon: 'warning',
-                        title: "Ops.. ocorreu um erro",
+                        title: data.error,
                     })
                 }
             })

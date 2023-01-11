@@ -5,15 +5,13 @@ import Swal from "sweetalert2";
 import '../../../global/editar.scss'
 
 
-const EditarEspecialista = () => {
+const EditarEspecialidade = () => {
 
     const { editData, setEditData } = useContext(Context);
 
     const [formulario, setFormulario] = useState({
         id: editData?.id,
-        nome: editData?.nome,
-        especialidade: editData?.especialidade,
-        contato: editData?.contato
+        especialidade: editData?.especialidade
     })
 
 
@@ -31,7 +29,7 @@ const EditarEspecialista = () => {
 
         event.preventDefault()
 
-        await fetch('http://localhost:3001/editarEspecialista', OptionsRegister)
+        await fetch('http://localhost:3001/editarEspecialidade', OptionsRegister)
             .then(res => res.json())
             .then(data => {
                 if (data.status == 200) {
@@ -49,40 +47,16 @@ const EditarEspecialista = () => {
     }
 
 
-    //lógicas para formatação de número
-    const phoneMask = (value) => {
-        if (!value) return ""
-        value = value.replace(/\D/g, '')
-        value = value.replace(/(\d{2})(\d)/, "($1) $2")
-        value = value.replace(/(\d)(\d{4})$/, "$1-$2")
-        setFormulario({ ...formulario, contato: value })
-
-    }
-    //lógicas para apenas serem inseridos números
-    const handleChange = (e) => {
-        const value = e.target.value.replace(/\D/g, "");
-        phoneMask(value)
-    };
-
-
     return (
         <>
         {console.log(formulario)}
             <TopTitulo>
-                Editar Especialista
+                Editar Especialidade
             </TopTitulo>
             <form onSubmit={EditarConsulta} className="main-editar-consulta">
                 <div class="form-group">
-                    <span>Nome</span>
-                    <input required className="form-field" type="text" defaultValue={formulario.nome} name="name" onChange={(e) => setFormulario({ ...formulario, nome: e.target.value })} />
-                </div>
-                <div class="form-group">
                     <span>Especialidade</span>
                     <input required className="form-field" type="text" defaultValue={formulario.especialidade} name="name" onChange={(e) => setFormulario({ ...formulario, especialidade: e.target.value })} />
-                </div>
-                <div class="form-group">
-                    <span>Contato</span>
-                    <input required className="form-field" value={formulario.contato} onChange={(e) => handleChange(e)} />
                 </div>
                 <button className="botao-salvar" type="submit">
                     Salvar
@@ -92,4 +66,4 @@ const EditarEspecialista = () => {
     )
 }
 
-export default EditarEspecialista;
+export default EditarEspecialidade;
