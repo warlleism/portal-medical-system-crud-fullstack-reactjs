@@ -110,6 +110,7 @@
                 .container-info-ultimas {
                     width: 400px;
                     margin: 5px;
+
                     span {
                         font-size: 0.8rem;
                         font-weight: 100;
@@ -127,33 +128,36 @@
 
     }
 
-    .container-ouvidoria{
+    .container-ouvidoria {
         width: 80%;
         height: 300px;
         color: #fff;
         background-color: #009860;
 
-        div:nth-child(1){
+        div:nth-child(1) {
             width: 100%;
             display: flex;
             margin-top: 20px;
             align-items: center;
-            img{
+
+            img {
                 margin-left: 40px;
                 margin-right: 40px;
             }
-            div:nth-child(1){
+
+            div:nth-child(1) {
                 font-size: 2rem;
                 font-weight: 400;
             }
-            div:nth-child(2){
+
+            div:nth-child(2) {
                 font-weight: 300;
                 font-size: 1.1rem;
- 
+
             }
         }
 
-        .container-canal{
+        .container-canal {
             width: 300px;
             height: 50px;
             display: flex;
@@ -164,6 +168,94 @@
             align-items: center;
             justify-content: center;
             background-color: #014E31;
+        }
+    }
+}
+
+@media screen and (max-width: 978px) {
+    .home-page-container {
+        width: 100%;
+
+        .container-consultas-especialistas {
+            flex-direction: column;
+
+            .container-info {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+
+        .container-ultimas-consultas-atualizacoes {
+            width: 100%;
+
+            .container-ultimas-info {
+                .container-consultas-mes {
+                    margin-bottom: 20px;
+
+                    .container-info-ultimas {
+                        div {
+                            width: 100px;
+                            font-size: .7rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        .container-ouvidoria {
+            width: 100%;
+            margin-top: 10px;
+        }
+    }
+}
+
+@media screen and (max-width: 478px) {
+    .home-page-container {
+        margin: 0 auto;
+
+        .container-consultas-especialistas {
+            margin: 0;
+            width: 100%;
+
+            .container-info {
+                width: 100% !important;
+            }
+        }
+    }
+
+    .container-ouvidoria {
+        width: 80%;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: 100% !important;
+        justify-content: center;
+        background-color: #009860;
+
+        div {
+            flex-direction: column;
+
+            img {
+                max-width: 100%;
+            }
+
+            div:nth-child(1) {
+                font-size: 1.5rem !important;
+            }
+
+            div:nth-child(2) {
+                font-size: .5rem !important;
+
+            }
+        }
+
+
+        .container-canal {
+            width: 90% !important;
+            margin-left: 0!important;
+            margin-bottom: 15px !important;
+
         }
     }
 }

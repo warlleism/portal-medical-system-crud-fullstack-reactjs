@@ -21,6 +21,7 @@ const Main = () => {
     const [medicos, setMedicos] = useState(false)
     const [especialidades, setEspecialidades] = useState(false)
     const [ouvidoria, setOuvidoria] = useState(false)
+    const [count, setCount] = useState(0)
 
     $("#container").click(function () {
         setConsultas(false)
@@ -28,187 +29,209 @@ const Main = () => {
         setEspecialidades(false)
     });
 
+    const HidderBar = () => {
+        const a = document.getElementById('nav-bar')
+
+        if (count <= 0) {
+            $(".menu-nav").click(function () {
+                a.style.transform = 'translateX(-100%)'
+                setCount(count + 1)
+            });
+        } else {
+            $(".menu-nav").click(function () {
+                a.style.transform = 'translateX(0%)'
+                setCount(count - 1)
+            });
+        }
+    }
+
+    useEffect(() => {
+        HidderBar()
+    }, [])
 
     return (
         <BrowserRouter>
-            <div>
-                <div className="nav-bar" id="navBar" >
-                    <div className="main-logo" id="logo" onClick={() => {
-                        setConsultas(false)
-                        setMedicos(false)
-                        setConsultas(false)
-                        setEspecialidades(false)
-                        setOuvidoria(false)
+            {console.log(count)}
+            <div className="nav-bar" id="nav-bar">
+                <div className="main-logo" id="logo" onClick={() => {
+                    setConsultas(false)
+                    setMedicos(false)
+                    setConsultas(false)
+                    setEspecialidades(false)
+                    setOuvidoria(false)
 
-                    }}>
-                        <Link to={'/'} id="hidden-bar-title" style={{ transition: ".5s ease-in-out" }}>
-                            <div><strong style={{ color: "#01DB8B" }}>M</strong>edical</div>
-                            <div><strong style={{ color: "#01DB8B" }}>G</strong>roup
-                                <div className="circle">
-                                </div>
+                }}>
+                    <Link to={'/'} style={{ transition: ".5s ease-in-out" }}>
+                        <div><strong style={{ color: "#01DB8B" }}>M</strong>edical</div>
+                        <div><strong style={{ color: "#01DB8B" }}>G</strong>roup
+                            <div className="circle">
                             </div>
-                        </Link>
-                        <div className="arrow-back-navbar" id="arrow-nav-bar">
-                            <span className="material-symbols-outlined" onClick={() => window.history.back()}>
-                                arrow_back
-                            </span>
                         </div>
-                    </div>
-                    <div className="list-links-field">
-
-                        <div>
-                            <div className="link-field"
-                                style={{ backgroundColor: consultas ? "#009860" : false }}
-                                onClick={() => {
-                                    setConsultas(!consultas)
-                                    setMedicos(false)
-                                    setEspecialidades(false)
-                                    setOuvidoria(false)
-                                }}>
-                                <div className="title-icon-link-field" >
-                                    <span className="material-symbols-outlined">
-                                        content_paste
-                                    </span>
-                                    <div>Consultas</div>
-                                </div>
-                                <i className="material-symbols-outlined">
-                                    arrow_drop_down
-                                </i>
-                            </div>
-                            {
-                                consultas
-                                    ?
-                                    <div className="container-field">
-                                        <Link to={'/cadastrarConsulta'} className="field">
-                                            <div>Criar nova consulta</div>
-                                        </Link>
-                                        <Link to={'/visualizarConsulta'} className="field">
-                                            <div>Consultas</div>
-                                        </Link>
-                                    </div>
-                                    :
-                                    false
-                            }
-                        </div>
-
-                        <div>
-                            <div className="link-field"
-                                style={{ backgroundColor: medicos ? "#009860" : false }}
-                                onClick={() => {
-                                    setMedicos(!medicos)
-                                    setConsultas(false)
-                                    setEspecialidades(false)
-                                    setOuvidoria(false)
-                                }}>
-                                <div className="title-icon-link-field" >
-                                    <span className="material-symbols-outlined">
-                                        vaccines
-                                    </span>
-                                    <div>Doutores(a)</div>
-                                </div>
-                                <i className="material-symbols-outlined">
-                                    arrow_drop_down
-                                </i>
-                            </div>
-
-                            {
-                                medicos
-                                    ?
-                                    <div className="container-field">
-                                        <Link to={'/cadastrarEspecialista'} className="field">
-                                            <div>Cadastrar novo doutor(a)</div>
-                                        </Link>
-                                        <Link to={'visualizarEspecialistas'} className="field">
-                                            <div>Doutores(a)</div>
-                                        </Link>
-                                    </div>
-                                    :
-                                    false
-                            }
-                        </div>
-
-                        <div>
-                            <div className="link-field"
-                                style={{ backgroundColor: especialidades ? "#009860" : false }}
-                                onClick={() => {
-                                    setEspecialidades(!especialidades)
-                                    setConsultas(false)
-                                    setMedicos(false)
-                                    setOuvidoria(false)
-                                }}>
-                                <div className="title-icon-link-field" >
-                                    <span className="material-symbols-outlined">
-                                        stethoscope
-                                    </span>
-                                    <div>Especialidades</div>
-                                </div>
-                                <i className="material-symbols-outlined">
-                                    arrow_drop_down
-                                </i>
-                            </div>
-                            {
-                                especialidades
-                                    ?
-                                    <div className="container-field">
-                                        <Link to={"/visualizarEspecialidades"} className="field">
-                                            <div>Especialidades</div>
-                                        </Link>
-                                    </div>
-                                    :
-                                    false
-                            }
-                        </div>
-
-                        <Link to={'/ouvidoria'} className="link-field"
-                            style={{ backgroundColor: ouvidoria ? "#009860" : false }}
-                            onClick={() => {
-                                setConsultas(false)
-                                setMedicos(false)
-                                setConsultas(false)
-                                setEspecialidades(false)
-                                setOuvidoria(!ouvidoria)
-                            }}>
-                            <div className="title-icon-link-field" >
-                                <span className="material-symbols-outlined">
-                                    support_agent
-                                </span>
-                                <div>Ouvidoria</div>
-                            </div>
-                            <i className="material-symbols-outlined" style={{ opacity: 0, pointers: 'none' }}>
-                                arrow_drop_down
-                            </i>
-                        </Link>
-                    </div>
-
-                    <div className="profile-login-logout">
-                        <span className="material-symbols-outlined">
-                            login
+                    </Link>
+                    <div className="arrow-back-navbar" id="arrow-nav-bar">
+                        <span className="material-symbols-outlined nav-arrow" onClick={() => window.history.back()}>
+                            arrow_back
                         </span>
-                        <span className="material-symbols-outlined">
-                            logout
-                        </span>
-                        <span className="material-symbols-outlined user">
-                            person
+                        <span className="material-symbols-outlined menu-nav" onClick={() => HidderBar()}>
+                            menu
                         </span>
                     </div>
                 </div>
+                <div className="list-links-field">
+                    <div>
+                        <div className="link-field"
+                            style={{ backgroundColor: consultas ? "#009860" : false }}
+                            onClick={() => {
+                                setConsultas(!consultas)
+                                setMedicos(false)
+                                setEspecialidades(false)
+                                setOuvidoria(false)
+                            }}>
+                            <div className="title-icon-link-field" >
+                                <span className="material-symbols-outlined">
+                                    content_paste
+                                </span>
+                                <div>Consultas</div>
+                            </div>
+                            <i className="material-symbols-outlined">
+                                arrow_drop_down
+                            </i>
+                        </div>
+                        {
+                            consultas
+                                ?
+                                <div className="container-field">
+                                    <Link to={'/cadastrarConsulta'} className="field">
+                                        <div>Criar nova consulta</div>
+                                    </Link>
+                                    <Link to={'/visualizarConsulta'} className="field">
+                                        <div>Consultas</div>
+                                    </Link>
+                                </div>
+                                :
+                                false
+                        }
+                    </div>
 
-                <Container id="container">
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/cadastrarConsulta" element={<CadastrarConsultas />} />
-                        <Route path="/editarConsulta" element={<EditarConsultas />} />
-                        <Route path="/visualizarConsulta" element={<VisualizarConsulta />} />
-                        <Route path="/cadastrarEspecialista" element={<CadastrarEspecialista />} />
-                        <Route path="/visualizarEspecialistas" element={<VisualizarEspecialistas />} />
-                        <Route path="/editarEspecialista" element={<EditarEspecialista />} />
-                        <Route path="/visualizarEspecialidades" element={<VisualizarEspecialidades />} />
-                        <Route path="/editarEspecialidades" element={<EditarEspecialidade />} />
-                        <Route path="/ouvidoria" element={<Ouvidoria />} />
-                    </Routes>
+                    <div>
+                        <div className="link-field"
+                            style={{ backgroundColor: medicos ? "#009860" : false }}
+                            onClick={() => {
+                                setMedicos(!medicos)
+                                setConsultas(false)
+                                setEspecialidades(false)
+                                setOuvidoria(false)
+                            }}>
+                            <div className="title-icon-link-field" >
+                                <span className="material-symbols-outlined">
+                                    vaccines
+                                </span>
+                                <div>Doutores(a)</div>
+                            </div>
+                            <i className="material-symbols-outlined">
+                                arrow_drop_down
+                            </i>
+                        </div>
 
-                </Container>
+                        {
+                            medicos
+                                ?
+                                <div className="container-field">
+                                    <Link to={'/cadastrarEspecialista'} className="field">
+                                        <div>Cadastrar novo doutor(a)</div>
+                                    </Link>
+                                    <Link to={'visualizarEspecialistas'} className="field">
+                                        <div>Doutores(a)</div>
+                                    </Link>
+                                </div>
+                                :
+                                false
+                        }
+                    </div>
+
+                    <div>
+                        <div className="link-field"
+                            style={{ backgroundColor: especialidades ? "#009860" : false }}
+                            onClick={() => {
+                                setEspecialidades(!especialidades)
+                                setConsultas(false)
+                                setMedicos(false)
+                                setOuvidoria(false)
+                            }}>
+                            <div className="title-icon-link-field" >
+                                <span className="material-symbols-outlined">
+                                    stethoscope
+                                </span>
+                                <div>Especialidades</div>
+                            </div>
+                            <i className="material-symbols-outlined">
+                                arrow_drop_down
+                            </i>
+                        </div>
+                        {
+                            especialidades
+                                ?
+                                <div className="container-field">
+                                    <Link to={"/visualizarEspecialidades"} className="field">
+                                        <div>Especialidades</div>
+                                    </Link>
+                                </div>
+                                :
+                                false
+                        }
+                    </div>
+
+                    <Link to={'/ouvidoria'} className="link-field"
+                        style={{ backgroundColor: ouvidoria ? "#009860" : false }}
+                        onClick={() => {
+                            setConsultas(false)
+                            setMedicos(false)
+                            setConsultas(false)
+                            setEspecialidades(false)
+                            setOuvidoria(!ouvidoria)
+                        }}>
+                        <div className="title-icon-link-field" >
+                            <span className="material-symbols-outlined">
+                                support_agent
+                            </span>
+                            <div>Ouvidoria</div>
+                        </div>
+                        <i className="material-symbols-outlined" style={{ opacity: 0, pointers: 'none' }}>
+                            arrow_drop_down
+                        </i>
+                    </Link>
+                </div>
+
+                <div className="profile-login-logout">
+                    <span className="material-symbols-outlined">
+                        login
+                    </span>
+                    <span className="material-symbols-outlined">
+                        logout
+                    </span>
+                    <span className="material-symbols-outlined user">
+                        person
+                    </span>
+                </div>
             </div>
+
+            <Container className="container-main-content">
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/cadastrarConsulta" element={<CadastrarConsultas />} />
+                    <Route path="/editarConsulta" element={<EditarConsultas />} />
+                    <Route path="/visualizarConsulta" element={<VisualizarConsulta />} />
+                    <Route path="/cadastrarEspecialista" element={<CadastrarEspecialista />} />
+                    <Route path="/visualizarEspecialistas" element={<VisualizarEspecialistas />} />
+                    <Route path="/editarEspecialista" element={<EditarEspecialista />} />
+                    <Route path="/visualizarEspecialidades" element={<VisualizarEspecialidades />} />
+                    <Route path="/editarEspecialidades" element={<EditarEspecialidade />} />
+                    <Route path="/ouvidoria" element={<Ouvidoria />} />
+                </Routes>
+
+            </Container>
+
+
 
         </BrowserRouter >
     )
