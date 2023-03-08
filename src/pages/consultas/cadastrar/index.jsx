@@ -23,7 +23,6 @@ const CadastrarConsultas = () => {
         hora: ""
     })
 
-
     function filtrarEspecialidades(profissionais) {
         const especialidades = [];
         const especialidadesUnicas = [];
@@ -42,7 +41,6 @@ const CadastrarConsultas = () => {
 
     //Consumindo apis que retornam todos especialistas e especialidades
     useEffect(() => {
-
         const fetchDataEspecialistas = async () => {
             const result = await fetch('http://localhost:3001/todosEspecialistas')
                 .then(response => response.json())
@@ -86,8 +84,8 @@ const CadastrarConsultas = () => {
         value = value.replace(/(\d{2})(\d)/, "($1) $2")
         value = value.replace(/(\d)(\d{4})$/, "$1-$2")
         setFormulario({ ...formulario, contato: value })
-
     }
+
     //lógicas para apenas serem inseridos números
     const handleChange = (e) => {
         const value = e.target.value.replace(/\D/g, "");
@@ -122,7 +120,7 @@ const CadastrarConsultas = () => {
                 </div>
 
                 <div className="form-group">
-                    <span>Doutor</span>
+                    <span>Doutor (a)</span>
                     {
                         searchFilter.length == 0
                             ?

@@ -68,10 +68,10 @@ const Main = () => {
                         </div>
                     </Link>
                     <div className="arrow-back-navbar" id="arrow-nav-bar">
-                        <span className="material-symbols-outlined nav-arrow" onClick={() => window.history.back()}>
+                        <span className="material-symbols-outlined nav-arrow" translate="no" onClick={() => window.history.back()}>
                             arrow_back
                         </span>
-                        <span className="material-symbols-outlined menu-nav" onClick={() => HidderBar()}>
+                        <span className="material-symbols-outlined menu-nav" translate="no" onClick={() => HidderBar()}>
                             menu
                         </span>
                     </div>
@@ -87,12 +87,12 @@ const Main = () => {
                                 setOuvidoria(false)
                             }}>
                             <div className="title-icon-link-field" >
-                                <span className="material-symbols-outlined">
+                                <span className="material-symbols-outlined" translate="no" >
                                     content_paste
                                 </span>
                                 <div>Consultas</div>
                             </div>
-                            <i className="material-symbols-outlined">
+                            <i className="material-symbols-outlined" translate="no" >
                                 arrow_drop_down
                             </i>
                         </div>
@@ -122,12 +122,12 @@ const Main = () => {
                                 setOuvidoria(false)
                             }}>
                             <div className="title-icon-link-field" >
-                                <span className="material-symbols-outlined">
+                                <span className="material-symbols-outlined" translate="no">
                                     vaccines
                                 </span>
-                                <div>Doutores(a)</div>
+                                <div>Especialista</div>
                             </div>
-                            <i className="material-symbols-outlined">
+                            <i className="material-symbols-outlined" translate="no">
                                 arrow_drop_down
                             </i>
                         </div>
@@ -158,12 +158,12 @@ const Main = () => {
                                 setOuvidoria(false)
                             }}>
                             <div className="title-icon-link-field" >
-                                <span className="material-symbols-outlined">
+                                <span className="material-symbols-outlined" translate="no">
                                     stethoscope
                                 </span>
                                 <div>Especialidades</div>
                             </div>
-                            <i className="material-symbols-outlined">
+                            <i className="material-symbols-outlined" translate="no">
                                 arrow_drop_down
                             </i>
                         </div>
@@ -190,25 +190,25 @@ const Main = () => {
                             setOuvidoria(!ouvidoria)
                         }}>
                         <div className="title-icon-link-field" >
-                            <span className="material-symbols-outlined">
+                            <span className="material-symbols-outlined" translate="no">
                                 support_agent
                             </span>
                             <div>Ouvidoria</div>
                         </div>
-                        <i className="material-symbols-outlined" style={{ opacity: 0, pointers: 'none' }}>
+                        <i className="material-symbols-outlined" translate="no" style={{ opacity: 0, pointers: 'none' }}>
                             arrow_drop_down
                         </i>
                     </Link>
                 </div>
 
                 <div className="profile-login-logout">
-                    <span className="material-symbols-outlined">
+                    <span className="material-symbols-outlined" translate="no">
                         login
                     </span>
-                    <span className="material-symbols-outlined">
+                    <span className="material-symbols-outlined" translate="no">
                         logout
                     </span>
-                    <span className="material-symbols-outlined user">
+                    <span className="material-symbols-outlined user" translate="no">
                         person
                     </span>
                 </div>
