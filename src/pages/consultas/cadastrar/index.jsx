@@ -7,7 +7,8 @@ import '../../../global/cadastrar.scss'
 
 const CadastrarConsultas = () => {
 
-    const [especialidades] = useGetData('http://localhost:3001/todosEspecialistas')
+    const [data] = useGetData('http://localhost:3001/todosEspecialistas')
+    const [especialidade, setEspecialidade] = useState([])
     const [searchFilter, setSearchFilter] = useState([])
     const [handler, setHandler] = useState([])
 
@@ -22,8 +23,26 @@ const CadastrarConsultas = () => {
         hora: ""
     })
 
+
+    function filtrarEspecialidades(profissionais) {
+        const especialidades = [];
+        const especialidadesUnicas = [];
+
+        for (let i = 0; i < profissionais?.length; i++) {
+            const especialidade = profissionais[i]?.especialidade;
+
+            if (!especialidades?.includes(especialidade)) {
+                especialidades?.push(especialidade);
+                especialidadesUnicas?.push(profissionais[i]);
+            }
+        }
+        setEspecialidade(especialidadesUnicas);
+    }
+
+
     //Consumindo apis que retornam todos especialistas e especialidades
     useEffect(() => {
+
         const fetchDataEspecialistas = async () => {
             const result = await fetch('http://localhost:3001/todosEspecialistas')
                 .then(response => response.json())
@@ -48,7 +67,7 @@ const CadastrarConsultas = () => {
     //Lógica para enviar post de nova consulta
     const EnviarDados = async (event) => {
         event.preventDefault()
-       apiMetodos.createData('http://localhost:3001/novaConsulta', formulario)
+        apiMetodos.createData('http://localhost:3001/novaConsulta', formulario)
     }
 
     //UseEffect chamando sempre que o campo especialidade é preenchido (complementa lógica de filtragem)
@@ -90,12 +109,12 @@ const CadastrarConsultas = () => {
 
                 <div className="form-group">
                     <span>Especialidade</span>
-                    <select className="form-field" type="text" onChange={(e) => setFormulario({ ...formulario, especialidade: e.target.value })}>
+                    <select className="form-field" type="text" onClick={() => filtrarEspecialidades(data)} onChange={(e) => setFormulario({ ...formulario, especialidade: e.target.value })}>
                         <option value="">Selecione...</option>
                         {
-                            especialidades?.map((e) => {
+                            especialidade?.map((e) => {
                                 return (
-                                    <option value={e.especialidade}>{e.especialidade}</option>
+                                    <option key={e.id} value={e.especialidade}>{e.especialidade}</option>
                                 )
                             })
                         }
