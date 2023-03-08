@@ -7,7 +7,7 @@ import '../../../global/cadastrar.scss'
 
 const CadastrarConsultas = () => {
 
-    const [especialidades] = useGetData('http://localhost:3001/todasEspecialidades')
+    const [especialidades] = useGetData('http://localhost:3001/todosEspecialistas')
     const [searchFilter, setSearchFilter] = useState([])
     const [handler, setHandler] = useState([])
 

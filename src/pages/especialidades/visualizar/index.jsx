@@ -23,7 +23,7 @@ const VisualizarEspecialidades = () => {
     const currentItens = itens.slice(startIndex, endIndex)
 
     const fetchData = async () => {
-        const result = await fetch('http://localhost:3001/todasEspecialidades')
+        const result = await fetch('http://localhost:3001/todosEspecialistas')
             .then(response => response.json())
             .then(data => data)
         setItens(result)

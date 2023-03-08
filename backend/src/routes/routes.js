@@ -1,7 +1,6 @@
 const express = require("express");
 const Router = express.Router();
 
-const consultasHome = require('../controller/atualizacoes/last-30-days-registers.js')
 const qtdEspecialistas = require('../controller/atualizacoes/qtd-consultas-registers')
 
 const listarEspecialidade = require('../controller/especialidades/read-all-especialidades')
@@ -36,7 +35,6 @@ Router.get('/todosEspecialistas', listarTodosEspecialistas)
 Router.delete('/deletarEspecialista', deletarEspecialista)
 Router.put('/editarEspecialista', editarEspecialista)
 
-Router.get('/consultasHome', consultasHome)
 Router.get('/qtdEspecialistas', qtdEspecialistas)
 
 module.exports = Router;

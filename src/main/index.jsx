@@ -51,7 +51,6 @@ const Main = () => {
 
     return (
         <BrowserRouter>
-            {console.log(count)}
             <div className="nav-bar" id="nav-bar">
                 <div className="main-logo" id="logo" onClick={() => {
                     setConsultas(false)

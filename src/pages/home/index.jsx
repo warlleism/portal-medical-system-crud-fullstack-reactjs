@@ -11,7 +11,7 @@ const Home = () => {
     useEffect(() => {
 
         const fetchData = async () => {
-            const result = await fetch('http://localhost:3001/consultasHome')
+            const result = await fetch('http://localhost:3001/todasConsultas')
                 .then(response => response.json())
                 .then(data => data)
             setData(result)
